@@ -1,0 +1,15 @@
+[user]
+	name = Vítor Avelino
+	email = contact@vitoravelino.me
+[color]
+	ui = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[alias]
+    br = branch
+    ca = commit --amend
+    ci = commit
+    co = checkout
+    st = status
+    who = shortlog -s --
