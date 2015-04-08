@@ -19,3 +19,6 @@ set smarttab
 " tab length = 2 spaces
 set shiftwidth=2
 set tabstop=2
+
+" text
+set textwidth=80
