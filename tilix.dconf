@@ -1,0 +1,21 @@
+[/]
+terminal-title-style='none'
+quake-specific-monitor=0
+window-style='normal'
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+foreground-color='#DADADBDBC0C0'
+visible-name='Default'
+login-shell=true
+palette=['#19191D1D2A2A', '#EDED82827474', '#A6A6CCCC7070', '#FAFAD0D07A7A', '#8B8BCBCBD6D6', '#CECEBABAFAFA', '#9595E6E6CBCB', '#F8F8F2', '#686868686868', '#F2F287877979', '#BABAE6E67D7D', '#FFFFD5D58080', '#8B8BCBCBD6D6', '#D3D3BFBFFFFF', '#9595E6E6CBCB', '#F9F8F5']
+badge-color='#AC7EA8'
+badge-color-set=false
+use-system-font=false
+cursor-colors-set=false
+highlight-colors-set=false
+use-theme-colors=false
+bold-color-set=false
+font='DejaVu Sans Mono 10'
+background-color='#1A1A1D1D2727'
+background-transparency-percent=0
+dim-transparency-percent=7
