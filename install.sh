@@ -3,12 +3,16 @@
 
 # variables
 ASDF_BRANCH=v0.7.8
+BAT_FILE=bat-0.15.0-1.1.x86_64.rpm
 
-RUBY_VERSION=2.6.6
-GOLANG_VERSION=1.14.1
-NODE_VERSION=12.16.1
-ERLANG_VERSION=22.3.1
-ELIXIR_VERSION=1.10.2
+# dotfiles to its proper places
+mkdir -p $HOME/.antigen
+mkdir -p $HOME/.ssh
+mkdir -p $HOME/.config/fontconfig
+
+cp {.aliases,.exports,.gemrc,.curlrc,.zshrc,.vimrc,.gitconfig,.tool-versions} $HOME
+cp .ssh/config $HOME/.ssh
+cp .antigen/config $HOME/.antigen
 
 # repositories
 sudo zypper ar -c https://download.opensuse.org/repositories/Virtualization:containers/openSUSE_Leap_15.1/Virtualization:containers.repo
@@ -36,17 +40,18 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo flatpak update
 sudo flatpak install -y flathub com.slack.Slack
 sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
-# sudo flatpak install -y flathub com.teamspeak.TeamSpeak
 sudo flatpak install -y flathub com.wps.Office
+sudo flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
+# sudo flatpak install -y flathub com.teamspeak.TeamSpeak
 # sudo flatpak install -y flathub com.dropbox.Client
 
 # Tilix
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 
 # bat
-wget https://download.opensuse.org/repositories/openSUSE:/Factory/standard/x86_64/bat-0.12.1-2.3.x86_64.rpm
-sudo zypper -n in bat-0.12.1-2.3.x86_64.rpm
-rm -rf bat-0.12.1-2.3.x86_64.rpm
+wget https://download.opensuse.org/repositories/openSUSE:/Factory/standard/x86_64/$BAT_FILE
+sudo zypper -n in $BAT_FILE
+rm -rf $BAT_FILE
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -56,33 +61,17 @@ $HOME/.fzf/install --key-bindings --completion --no-update-rc
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_BRANCH
 . $HOME/.asdf/asdf.sh
 
-# golang
-asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
-asdf install golang $GOLANG_VERSION
-asdf global golang $GOLANG_VERSION
+asdf plugin-add golang
+asdf plugin-add ruby
+asdf plugin-add erlang
+asdf plugin-add elixir
+asdf plugin-add nodejs
 
-# ruby
-asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby $RUBY_VERSION
-asdf global ruby $RUBY_VERSION
-
-# nodejs
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
-asdf install nodejs $NODE_VERSION
-asdf global nodejs $NODE_VERSION
+asdf install
 
-asdf reshim && npm -g install yarn diff-so-fancy
-
-# erlang/elixir
-asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-asdf install erlang $ERLANG_VERSION
-asdf global erlang $ERLANG_VERSION
-
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf install elixir $ELIXIR_VERSION
-asdf global elixir $ELIXIR_VERSION
-
+asdf reshim
+npm -g install yarn diff-so-fancy
 asdf reshim
 
 # perfect eq preset
@@ -105,16 +94,7 @@ rm -rf Qogir-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 
 # antigen
-mkdir -p $HOME/.antigen
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
-
-# dotfiles to its proper places
-mkdir -p $HOME/.ssh
-mkdir -p $HOME/.config/fontconfig
-
-cp {.aliases,.exports,.gemrc,.curlrc,.zshrc,.vimrc,.gitconfig} $HOME
-cp .ssh/config $HOME/.ssh
-cp .antigen/config $HOME/.antigen
 
 # spotify
 echo 'Go to https://github.com/megamaced/spotify-easyrpm and install it via 1-click yast install'
