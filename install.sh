@@ -14,6 +14,7 @@ ELIXIR_VERSION=1.10.2
 sudo zypper ar -c https://download.opensuse.org/repositories/Virtualization:containers/openSUSE_Leap_15.1/Virtualization:containers.repo
 sudo zypper ar -c https://download.opensuse.org/repositories/mozilla/openSUSE_Leap_15.1/mozilla.repo
 sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.1/ packman
+sudo zypper ar -c https://download.nvidia.com/opensuse/leap/15.1 NVIDIA
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo zypper --gpg-auto-import-keys ref
@@ -23,6 +24,9 @@ sudo zypper -n dup --allow-vendor-change --from mozilla
 # devel
 sudo zypper -n in --type pattern devel_basis
 sudo zypper -n in libopenssl-devel readline-devel libssh2-devel
+
+# nvidia
+sudo zypper -n in x11-video-nvidiaG05
 
 # apps
 sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak
