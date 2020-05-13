@@ -1,7 +1,10 @@
-
 #!/bin/sh
 
 # variables
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 ASDF_BRANCH=v0.7.8
 BAT_FILE=bat-0.15.0-1.1.x86_64.rpm
 
@@ -28,9 +31,6 @@ sudo zypper -n dup --allow-vendor-change --from mozilla
 # devel
 sudo zypper -n in --type pattern devel_basis
 sudo zypper -n in libopenssl-devel readline-devel libssh2-devel
-
-# nvidia
-sudo zypper -n in x11-video-nvidiaG05
 
 # apps
 sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak
@@ -78,9 +78,6 @@ asdf reshim
 mkdir -p $HOME/.config/pulse/presets
 wget -P $HOME/.config/pulse/presets https://raw.githubusercontent.com/rsommerard/pulse-presets/master/Perfect%20EQ.preset
 
-# gsettings
-gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
-
 # qogir theme and icons
 sudo zypper -n in gtk2-engines gtk2-engine-murrine
 git clone https://github.com/vinceliuice/Qogir-theme.git
@@ -96,5 +93,37 @@ gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 # antigen
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 
+# gsettings
+gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
+gsettings set org.gnome.desktop.interface clock-show-date true
+
+# gnome extesnsions
+curl -L https://raw.githubusercontent.com/martin-sucha/gnome-shell-extension-cli/master/gnome-shell-extension-cli > $HOME/bin
+chmod +x $HOME/bin/gnome-shell-extension-cli
+
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/307/dash-to-dock/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/118/no-topleft-hot-corner/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/750/openweather/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/1112/screenshot-tool/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/355/status-area-horizontal-spacing/
+gnome-shell-extension-cli install https://extensions.gnome.org/extension/1031/topicons/
+
+gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather unit 'celsius'
+gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather position-in-panel 'right'
+gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather city '-7.1215981,-34.882028>João Pessoa, PB, Brasil >-1'
+gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather wind-speed-unit 'kph'
+
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 44
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock apply-custom-theme false
+
+gsettings --schemadir  ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.gsettings --schemadir  ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set screenshot shortcut-select-window ['<Primary>Print']
+org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
+
+echo -e "\n${GREEN}Installation complete.${NC}\n"
+
 # spotify
-echo 'Go to https://github.com/megamaced/spotify-easyrpm and install it via 1-click yast install'
+echo -e "* Go to ${YELLOW}https://github.com/megamaced/spotify-easyrpm ${NC}and install it via 1-click yast install"
+
+# nvidia
+echo -e "* Run ${YELLOW}sudo zypper -n in x11-video-nvidiaG05 ${NC}to install NVIDIA drivers"
