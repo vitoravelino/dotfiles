@@ -123,6 +123,11 @@ gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-window ['<Primary>Print']
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
 
+# wallpaper
+cp wallpaper.jpg $HOME/Pictures
+gsettings set org.gnome.desktop.background picture-options 'scaled'
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/wallpaper.jpg"
+
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
 # spotify
