@@ -124,9 +124,11 @@ gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screensh
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
 
 # wallpaper
-cp wallpaper.jpg $HOME/Pictures
+cp wallpaper.png $HOME/Pictures
 gsettings set org.gnome.desktop.background picture-options 'scaled'
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/wallpaper.jpg"
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/wallpaper.png"
+gsettings set org.gnome.desktop.screensaver picture-options 'scaled'
+gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/Pictures/wallpaper.png"
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
