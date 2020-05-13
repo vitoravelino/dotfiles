@@ -33,7 +33,10 @@ sudo zypper -n in --type pattern devel_basis
 sudo zypper -n in libopenssl-devel readline-devel libssh2-devel
 
 # apps
-sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak
+sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak wine lutris
+
+# fonts
+sudo zypper -n in google-tinos-fonts google-arimo-fonts google-cousine-fonts
 
 # flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
