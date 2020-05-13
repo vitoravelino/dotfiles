@@ -101,7 +101,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,ma
 gsettings set org.gnome.desktop.interface clock-show-date true
 
 # gnome extesnsions
-curl -L https://raw.githubusercontent.com/martin-sucha/gnome-shell-extension-cli/master/gnome-shell-extension-cli > $HOME/bin
+curl -L https://raw.githubusercontent.com/martin-sucha/gnome-shell-extension-cli/master/gnome-shell-extension-cli > $HOME/bin/gnome-shell-extension-cli
 chmod +x $HOME/bin/gnome-shell-extension-cli
 
 gnome-shell-extension-cli install https://extensions.gnome.org/extension/307/dash-to-dock/
@@ -118,10 +118,10 @@ gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-exte
 gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather wind-speed-unit 'kph'
 
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 44
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock apply-custom-theme false
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock apply-custom-theme true
 
-gsettings --schemadir  ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.gsettings --schemadir  ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set screenshot shortcut-select-window ['<Primary>Print']
-org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-window ['<Primary>Print']
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
