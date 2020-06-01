@@ -146,6 +146,9 @@ gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 # zsh
 chsh -s /usr/bin/zsh
 
+# docker group
+sudo usermod -aG docker $USER
+
 # antigen
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 
