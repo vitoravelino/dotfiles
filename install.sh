@@ -1,27 +1,76 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # variables
+MISSING_DEPENDENCIES=()
+LEAP_VERSION='15.1'
+OS_VERSION=$(sed -n '/^ID="/s/^.*=//p' /usr/lib/os-release | cut -d'"' -f2)
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-
-ASDF_BRANCH=v0.7.8
 BAT_FILE=bat-0.15.0-1.1.x86_64.rpm
 
-# dotfiles to its proper places
+# support functions
+get_latest_tag() {
+  curl --silent "https://api.github.com/repos/$1/tags" | grep -Po '"name": "\K.*?(?=")' | head -1
+}
+
+check_dependency() {
+  package=$2
+
+  if [ -z $package ]; then
+    package=$1
+  fi
+
+  if ! [ -x "$(command -v $1)" ]; then
+    MISSING_DEPENDENCIES+=($package)
+  fi
+}
+
+check_dependencies() {
+  check_dependency 'git'
+
+  if ! [ ${#MISSING_DEPENDENCIES[@]} -eq 0 ]; then
+    echo 'Installing missing dependencies...'
+    sudo zypper -n in ${MISSING_DEPENDENCIES[@]}
+  fi
+}
+
+check_os() {
+  if [ "$OS_VERSION" = "opensuse-leap" ]; then
+    REPO_OS_ID="openSUSE_Leap_$LEAP_VERSION"
+    NVIDIA_REPO_OS_ID="leap/$LEAP_VERSION"
+  elif [ $OS_VERSION = "opensuse-tumbleweed" ]; then
+    REPO_OS_ID='openSUSE_Tumbleweed'
+    NVIDIA_REPO_OS_ID='tumbleweed'
+  else
+    echo 'Error: OS not supported! You are not running openSUSE Leap or Tumbleweed.'
+    exit 1
+  fi
+}
+
+# main
+check_dependencies
+check_os
+
+# local folders
 mkdir -p $HOME/.antigen
 mkdir -p $HOME/.ssh
 mkdir -p $HOME/.config/fontconfig
 
+# cloning repo
+git clone https://github.com/vitoravelino/dotfiles.git
+cd dotfiles
+
+# dotfiles to its proper places
 cp {.aliases,.exports,.gemrc,.curlrc,.zshrc,.vimrc,.gitconfig,.tool-versions} $HOME
 cp .ssh/config $HOME/.ssh
 cp .antigen/config $HOME/.antigen
 
 # repositories
-sudo zypper ar -c https://download.opensuse.org/repositories/Virtualization:containers/openSUSE_Leap_15.1/Virtualization:containers.repo
-sudo zypper ar -c https://download.opensuse.org/repositories/mozilla/openSUSE_Leap_15.1/mozilla.repo
-sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.1/ packman
-sudo zypper ar -c https://download.nvidia.com/opensuse/leap/15.1 NVIDIA
+sudo zypper ar -c https://download.opensuse.org/repositories/Virtualization:containers/$REPO_OS_ID/Virtualization:containers.repo
+sudo zypper ar -c https://download.opensuse.org/repositories/mozilla/$REPO_OS_ID/mozilla.repo
+sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/$REPO_OS_ID/ packman
+sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo zypper --gpg-auto-import-keys ref
@@ -33,7 +82,7 @@ sudo zypper -n in --type pattern devel_basis
 sudo zypper -n in libopenssl-devel readline-devel libssh2-devel
 
 # apps
-sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak wine lutris
+sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak wine lutris zsh
 
 # fonts
 sudo zypper -n in google-tinos-fonts google-arimo-fonts google-cousine-fonts
@@ -61,6 +110,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install --key-bindings --completion --no-update-rc
 
 # asdf
+ASDF_BRANCH=$(get_latest_tag 'asdf-vm/asdf')
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_BRANCH
 . $HOME/.asdf/asdf.sh
 
@@ -93,6 +143,9 @@ git clone https://github.com/vinceliuice/Qogir-icon-theme.git
 rm -rf Qogir-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 
+# zsh
+chsh -s /usr/bin/zsh
+
 # antigen
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 
@@ -100,7 +153,7 @@ curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
 gsettings set org.gnome.desktop.interface clock-show-date true
 
-# gnome extesnsions
+# gnome extensions
 curl -L https://raw.githubusercontent.com/martin-sucha/gnome-shell-extension-cli/master/gnome-shell-extension-cli > $HOME/bin/gnome-shell-extension-cli
 chmod +x $HOME/bin/gnome-shell-extension-cli
 
@@ -120,14 +173,14 @@ gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-exte
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 44
 gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock apply-custom-theme true
 
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-window ['<Primary>Print']
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area ['<Primary><Shift>Print']
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-window "['<Primary>Print']"
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area "['<Primary><Shift>Print']"
 
 # wallpaper
 cp wallpaper.png $HOME/Pictures
-gsettings set org.gnome.desktop.background picture-options 'scaled'
+gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/wallpaper.png"
-gsettings set org.gnome.desktop.screensaver picture-options 'scaled'
+gsettings set org.gnome.desktop.screensaver picture-options 'zoom'
 gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/Pictures/wallpaper.png"
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"

@@ -1,29 +1,15 @@
 # Dotfiles & packages
 
-This is an `openSUSE Leap 15.1` based dotfiles & packages.
+This is an `openSUSE Leap (15.1)` and `Tumblewed` based dotfiles & packages.
 
-Install `git` and `zsh`:
+All you need to do is run the [install script](https://github.com/vitoravelino/dotfiles/blob/master/install.sh). To do that, you may either download and run the script manually, or use the following `curl` or `wget` command:
 
 ```sh
-$ sudo zypper in git zsh
+$ curl -o- https://raw.githubusercontent.com/vitoravelino/dotfiles/master/install.sh | bash
 ```
 
-Switch shell to `zsh`:
-
 ```sh
-$ chsh -s /bin/zsh
-```
-
-Clone the repo:
-
-```sh
-$ git clone https://github.com/vitoravelino/dotfiles.git
-```
-
-Run `install.sh` script:
-
-```sh
-$ ./install.sh
+$ wget -qO- https://raw.githubusercontent.com/vitoravelino/dotfiles/master/install.sh | bash
 ```
 
 Be happy! :)
