@@ -1,0 +1,164 @@
+# todo: document all the shortcurts
+# todo: move and focus window to another workspace
+
+# apps
+super + space
+  rofi -show drun -theme themes/launcher.rasi
+
+# lock screen
+super + l
+  multilockscreen -l blur --display 1
+
+# powermenu
+super + ctrl + Delete
+  ~/.config/rofi/scripts/powermenu.sh
+
+#
+# screenshots (scrot)
+#
+
+# whole screen
+Print
+  scrot -e 'mv $f ~/pictures/screenshots/; xclip -selection clipboard -t image/png -i ~/pictures/screenshots/$f'; aplay ~/.config/sxhkd/screenshot.wav
+
+# focused window
+shift + Print
+  scrot -u -e 'mv $f ~/pictures/screenshots/; xclip -selection clipboard -t image/png -i ~/pictures/screenshots/$f'; aplay ~/.config/sxhkd/screenshot.wav
+
+# selection
+super + shift + Print
+  scrot -s -e 'mv $f ~/pictures/screenshots/; xclip -selection clipboard -t image/png -i ~/pictures/screenshots/$f'; aplay ~/.config/sxhkd/screenshot.wav
+
+#
+# sxhkd
+#
+
+# reload config
+super + Escape
+  pkill -USR1 -x sxhkd
+
+#
+# bspwm
+#
+
+# quit/restart
+super + shift + {q,r}
+  bspc {quit,wm -r}
+
+#
+# windows
+#
+
+# close
+super + q
+	bspc node -c
+
+# alternate
+super + {_, shift + } Tab
+  bspc node -f {next,prev}.local
+
+# focus direction
+super + {Left,Down,Up,Right}
+  bspc node -f {west,south,north,east}.local
+
+#
+# preselect
+#
+
+# preselect the direction
+super + alt + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel
+
+#
+# monitors
+#
+
+super + {comma,period}
+  bspc monitor -f {west,east}
+
+# move node between monitors
+super + shift + {comma,period}
+  bspc node -m {west,east} --follow
+
+#
+# workspaces
+#
+
+super + ctrl + {Left,Right}
+  bspc desktop -f {prev,next}.local
+
+super + {1-9}
+  bspc desktop -f focused:^{1-9}
+
+#
+# move
+#
+
+# send window to the designated workspace
+super + shift + {1-9}
+  bspc node -d {home,web,terminal,code,chat,music,video,files,misc} --follow
+
+# Rotate all windows {counter-}clockwise by 90 degrees.
+super + {_,shift + } r
+	bspc node @/ --rotate {90,-90}
+
+# swap the current node and the biggest window
+super + g
+  bspc node -s biggest.window.local
+
+# swap nodes
+super + shift + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east}
+
+#
+# resize
+#
+
+# only works if windows <= 3
+super + ctrl + shift + Left
+  bspc node -z right -20 0 || bspc node -z left -20 0
+
+super + ctrl + shift + Right
+  bspc node -z left 20 0 || bspc node -z right 20 0
+
+super + ctrl + shift + Up
+  bspc node -z top 0 -20 || bspc node -z bottom 0 -20
+
+super + ctrl + shift + Down
+  bspc node -z top 0 20 || bspc node -z bottom 0 20
+
+# expand a window side
+super + ctrl + {h,j,k,l}
+  bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + ctrl + shift + {h,j,k,l}
+  bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+#
+# state
+#
+
+# tiling, pseudo tiling, floating, fullscreen
+super + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# monocle/tiled mode
+super + ctrl + m
+  bspc desktop -l next
+
+#
+# streaming mode
+#
+
+# enter
+super + ctrl + F12
+  ~/.config/sxhkd/enter-stream-mode.sh
+
+# quit
+super + ctrl + shift + F12
+  ~/.config/sxhkd/leave-stream-mode.sh

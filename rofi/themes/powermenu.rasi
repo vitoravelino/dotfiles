@@ -1,0 +1,28 @@
+* {
+  background-color: transparent;
+  font: "Font Awesome 5 Pro Light 48";
+  text-color: #484d5e;
+}
+
+#window {
+  width: 100%;
+  padding: 892;
+  background-color: #1f2430e0;
+  children: [ horibox ];
+}
+
+#horibox {
+  children: [ listview ];
+}
+
+#listview {
+  layout: horizontal;
+}
+
+#element {
+  padding: 5px 0;
+}
+
+#element.selected {
+  text-color: #DADBC0;
+}

@@ -1,0 +1,26 @@
+x-chooser {
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+
+.chooser-options {
+  background-color: $background;
+  display: none;
+  font-size: 13px;
+  margin-top: 4px;
+  position: absolute;
+
+  .chooser-option {
+    cursor: pointer;
+    text-overflow: ellipsis;
+
+    &:hover {
+      background-color: $foreground-alt;
+    }
+
+    &--selected {
+      background-color: $background-alt;
+    }
+  }
+}

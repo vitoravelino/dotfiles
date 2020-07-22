@@ -1,0 +1,5 @@
+[theme]
+name=Mytheme
+description=LightDM Webkit2 theme.
+engine=lightdm-webkit-greeter
+url=index.html
