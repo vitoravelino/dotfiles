@@ -1,0 +1,27 @@
+* {
+  background-color: transparent;
+  text-color: #DADBC0;
+}
+
+#window {
+  width: 100%;
+  padding: 960;
+  background-color: #1f2430e0;
+}
+
+prompt {
+  enabled: false;
+}
+
+#element {
+  padding: 5;
+}
+
+#element.selected {
+  text-color: #484d5e;
+  background-color: #DADBC0;
+}
+
+#inputbar {
+    padding: 5;
+}

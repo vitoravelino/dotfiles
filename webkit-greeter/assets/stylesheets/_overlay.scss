@@ -1,0 +1,24 @@
+.overlay {
+  align-items: center;
+  background-color: $background-alpha;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  li {
+    color: $foreground-alt;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 64px;
+    margin: 0 35px;
+
+    &.selected,
+    &:hover {
+      color: $foreground;
+    }
+  }
+}

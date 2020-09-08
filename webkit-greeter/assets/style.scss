@@ -1,0 +1,48 @@
+@import './stylesheets/reset';
+@import './stylesheets/fonts';
+@import './stylesheets/colors';
+
+@import './stylesheets/form';
+@import './stylesheets/header';
+@import './stylesheets/overlay';
+@import './stylesheets/x-chooser';
+
+body {
+  @extend .font-text;
+
+  color: $foreground;
+  text-rendering: optimizeLegibility !important;
+  user-select: none;
+}
+
+.background {
+  background-image: url('./images/bg.png');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.log {
+  width: 350px;
+  height: 300px;
+  background-color: white;
+  color: black;
+  text-align: right;
+  word-break: break-all;
+  font-size: 13px;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.power-button {
+  cursor: pointer;
+}

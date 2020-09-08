@@ -1,0 +1,5 @@
+.include /etc/pulse/default.pa
+
+load-module module-ladspa-sink sink_name=ladspa_output.mbeq_1197.mbeq master=alsa_output.pci-0000_0a_00.3.iec958-stereo plugin=mbeq_1197 label=mbeq control=4.0,2.0,1.0,0.0,0.0,-1.0,-1.0,-2.0,-2.0,0.0,0.0,2.0,3.0,3.0,3.0
+set-default-sink ladspa_output.mbeq_1197.mbeq
+set-sink-mute alsa_output.pci-0000_0a_00.3.iec958-stereo 0

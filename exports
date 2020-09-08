@@ -1,0 +1,10 @@
+# PATH's
+export GOPATH="$HOME/Workspace/go"
+export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin"
+
+# Prefer US English and use UTF-8
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+
+# Editor
+export EDITOR=vim

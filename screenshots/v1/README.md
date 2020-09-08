@@ -1,0 +1,5 @@
+![LightDM](s1.png)
+![Home](s2.png)
+![Rofi](s3.png)
+![Power Menu](s5.png)
+![Betterlockscreen](s6.png)

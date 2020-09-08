@@ -2,12 +2,11 @@
 
 # variables
 MISSING_DEPENDENCIES=()
-LEAP_VERSION='15.1'
+LEAP_VERSION='15.2'
 OS_VERSION=$(sed -n '/^ID="/s/^.*=//p' /usr/lib/os-release | cut -d'"' -f2)
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-BAT_FILE=bat-0.15.0-1.1.x86_64.rpm
 
 # support functions
 get_latest_tag() {
@@ -52,66 +51,88 @@ check_os() {
 check_dependencies
 check_os
 
-# local folders
-mkdir -p $HOME/.antigen
-mkdir -p $HOME/.ssh
-mkdir -p $HOME/.config/fontconfig
-
 # cloning repo
 git clone https://github.com/vitoravelino/dotfiles.git
 cd dotfiles
-
-# dotfiles to its proper places
-cp {.aliases,.exports,.gemrc,.curlrc,.zshrc,.vimrc,.gitconfig,.tool-versions} $HOME
-cp .ssh/config $HOME/.ssh
-cp .antigen/config $HOME/.antigen
+git checkout bspwm
 
 # repositories
-sudo zypper ar -c https://download.opensuse.org/repositories/Virtualization:containers/$REPO_OS_ID/Virtualization:containers.repo
-sudo zypper ar -c https://download.opensuse.org/repositories/mozilla/$REPO_OS_ID/mozilla.repo
+# polybar
+sudo zypper ar -c https://download.opensuse.org/repositories/X11:Utilities/$REPO_OS_ID/X11:Utilities.repo
+# codecs
 sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/$REPO_OS_ID/ packman
+# nvidia
 sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
+# lightdm webkit greeter
+sudo zypper ar -c https://download.opensuse.org/repositories/home:antergos/$REPO_OS_ID/home:antergos.repo
+# vscode
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo zypper --gpg-auto-import-keys ref
 sudo zypper -n dup --allow-vendor-change --from packman
-sudo zypper -n dup --allow-vendor-change --from mozilla
 
 # devel
 sudo zypper -n in --type pattern devel_basis
 sudo zypper -n in libopenssl-devel readline-devel libssh2-devel
 
+# i3lock-color deps
+sudo zypper -n in libev-devel xcb libxcb-devel xcb-util-image-devel xcb-util-devel xcb-util-xrm-devel xcb-util-wm-devel libxkbcommon-devel libxkbcommon-x11-devel cairo-devel openjpeg-devel libjpeg8-devel pam-devel xdpyinfo bc ImageMagick
+
+# qogir theme deps
+sudo zypper -n in gtk2-engines gtk2-engine-murrine
+
+# bspwm and cia
+sudo zypper -n in bspwm wmctrl scrot sxhkd rofi feh xdotool jq lightdm-webkit2-greeter picom dunst
+
 # apps
-sudo zypper -n in vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose tilix code discord flatpak wine lutris zsh
+APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp'
+
+if [ $OS_VERSION = "opensuse-tumbleweed" ]; then
+  APPS+=' spotify-easyrpm'
+fi
+
+sudo zypper -n in $APPS
 
 # fonts
-sudo zypper -n in google-tinos-fonts google-arimo-fonts google-cousine-fonts
+sudo zypper -n in google-tinos-fonts google-arimo-fonts google-cousine-fonts fetchmsttfonts noto-coloremoji-fonts
 
 # flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak update
+sudo flatpak install -y flathub com.bitwarden
 sudo flatpak install -y flathub com.slack.Slack
 sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
-sudo flatpak install -y flathub com.wps.Office
+sudo flatpak install -y flathub org.onlyoffice
 sudo flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
-# sudo flatpak install -y flathub com.teamspeak.TeamSpeak
-# sudo flatpak install -y flathub com.dropbox.Client
+sudo flatpak install -y flathub com.teamspeak.TeamSpeak
 
-# Tilix
-dconf load /com/gexperts/Tilix/ < tilix.dconf
+# lightdm
+sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/lightdm
+sudo cp -R $PWD/webkit-greeter/build /usr/share/lightdm-webkit/themes/custom
+sudo sed -i 's/webkit_theme        = antergos/webkit_theme        = custom/g' /etc/lightdm/lightdm-webkit2-greeter.conf
+sudo cp 01-my-lightdm.conf /usr/share/lightdm/lightdm.conf.d/
 
-# bat
-wget https://download.opensuse.org/repositories/openSUSE:/Factory/standard/x86_64/$BAT_FILE
-sudo zypper -n in $BAT_FILE
-rm -rf $BAT_FILE
+# todo: copy mouse natural scrolling conf
+# todo: how to set bspwm as window manager?
+
+# i3lock-color
+git clone https://github.com/Raymo111/i3lock-color.git
+cd i3lock-color
+chmod +x build.sh
+chmod +x install-i3lock-color.sh
+./build.sh
+./install-i3lock-color.sh
+cd $HOME/dotfiles
+rm -rf i3lock-color
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install --key-bindings --completion --no-update-rc
 
 # asdf
+ln -s $PWD/tool-versions $HOME/.tool-versions
 ASDF_BRANCH=$(get_latest_tag 'asdf-vm/asdf')
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_BRANCH
+git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch $ASDF_BRANCH
 . $HOME/.asdf/asdf.sh
 
 asdf plugin-add golang
@@ -125,23 +146,13 @@ asdf install
 
 asdf reshim
 npm -g install yarn diff-so-fancy
+GO111MODULE=on go get github.com/rhysd/dotfiles
 asdf reshim
 
-# perfect eq preset
-mkdir -p $HOME/.config/pulse/presets
-wget -P $HOME/.config/pulse/presets https://raw.githubusercontent.com/rsommerard/pulse-presets/master/Perfect%20EQ.preset
-
-# qogir theme and icons
-sudo zypper -n in gtk2-engines gtk2-engine-murrine
-git clone https://github.com/vinceliuice/Qogir-theme.git
-./Qogir-theme/install.sh -t standard -l gnome -w square -c standard
+# Qogir gtk theme
+git clone https://github.com/vitoravelino/Qogir-theme.git
+./Qogir-theme/install.sh -t standard -w square -c standard
 rm -rf Qogir-theme
-gsettings set org.gnome.desktop.interface gtk-theme "Qogir-win"
-
-git clone https://github.com/vinceliuice/Qogir-icon-theme.git
-./Qogir-icon-theme/install.sh
-rm -rf Qogir-icon-theme
-gsettings set org.gnome.desktop.interface icon-theme 'Qogir'
 
 # zsh
 chsh -s /usr/bin/zsh
@@ -149,47 +160,36 @@ chsh -s /usr/bin/zsh
 # docker group
 sudo usermod -aG docker $USER
 
+# cursor size fix
+sudo bash -c 'echo "Xcursor.size: 16" >> /etc/X11/Xresources'
+
+# symlink all dotfiles
+dotfiles link
+
+# lockscreen
+multilockscreen -u ~/pictures/wallpaper.png --fx blur
+
 # antigen
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 
-# gsettings
-gsettings set org.gnome.desktop.wm.preferences button-layout appmenu:minimize,maximize,close
-gsettings set org.gnome.desktop.interface clock-show-date true
-
-# gnome extensions
-curl -L https://raw.githubusercontent.com/martin-sucha/gnome-shell-extension-cli/master/gnome-shell-extension-cli > $HOME/bin/gnome-shell-extension-cli
-chmod +x $HOME/bin/gnome-shell-extension-cli
-
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/307/dash-to-dock/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/118/no-topleft-hot-corner/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/750/openweather/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/800/remove-dropdown-arrows/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/1112/screenshot-tool/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/355/status-area-horizontal-spacing/
-gnome-shell-extension-cli install https://extensions.gnome.org/extension/1031/topicons/
-
-gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather unit 'celsius'
-gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather position-in-panel 'right'
-gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather city '-7.1215981,-34.882028>João Pessoa, PB, Brasil >-1'
-gsettings --schemadir $HOME/.local/share/gnome-shell/extensions/openweather-extension@jenslody.de/schemas set org.gnome.shell.extensions.openweather wind-speed-unit 'kph'
-
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 44
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock apply-custom-theme true
-
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-window "['<Primary>Print']"
-gsettings --schemadir ~/.local/share/gnome-shell/extensions/gnome-shell-screenshot@ttll.de/schemas/ set org.gnome.shell.extensions.screenshot shortcut-select-area "['<Primary><Shift>Print']"
-
-# wallpaper
-cp wallpaper.png $HOME/Pictures
-gsettings set org.gnome.desktop.background picture-options 'zoom'
-gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/wallpaper.png"
-gsettings set org.gnome.desktop.screensaver picture-options 'zoom'
-gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/Pictures/wallpaper.png"
+# misc
+mkdir ~/pictures/screenshots
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
-# spotify
-echo -e "* Go to ${YELLOW}https://github.com/megamaced/spotify-easyrpm ${NC}and install it via 1-click yast install"
+## NOTE: libjsoncpp22 was available at some point while testing this but disappeared from repo
+echo -e "* Install polybar manually and link libjsoncpp with '${YELLOW}sudo ln -s /usr/lib64/libjsoncpp.so.24 /usr/lib64/libjsoncpp.so.22${NC}'"
+echo -e "* Setup dropbox by running '${YELLOW}dropbox start -i${NC}'"
+echo -e "* Setup your SSH and PGP keys"
+echo -e "* Check if ${YELLOW}/etc/pam.d/i3lock${NC} is using ${YELLOW}login${NC} and not ${YELLOW}system-auth${NC}"
+echo -e "* Set eq preset on pulseaudio equalizer"
+echo -e "* Set your OpenWeatherMap API key to the polybar script"
+echo -e "* Set Firefox config ${YELLOW}ui.context_menus.after_mouseup${NC} to ${YELLOW}true${NC}"
+
+if [ $OS_VERSION = "opensuse-leap" ]; then
+  # spotify
+  echo -e "* Go to ${YELLOW}https://github.com/megamaced/spotify-easyrpm ${NC}and install it via 1-click yast install"
+fi
 
 # nvidia
 echo -e "* Run ${YELLOW}sudo zypper -n in x11-video-nvidiaG05 ${NC}to install NVIDIA drivers"
