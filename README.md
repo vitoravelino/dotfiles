@@ -15,3 +15,12 @@ $ wget -qO- https://raw.githubusercontent.com/vitoravelino/dotfiles/master/insta
 ```
 
 Be happy! :)
+
+## Screenshots
+
+![LightDM](screenshots/lightdm.png)
+![Home](screenshots/home.png)
+![Code](screenshots/code.png)
+![Rofi](screenshots/rofi.png)
+![Power Menu](screenshots/powermenu.png)
+![Betterlockscreen](screenshots/lockscreen.png)
