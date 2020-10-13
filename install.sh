@@ -85,7 +85,7 @@ sudo zypper -n in gtk2-engines gtk2-engine-murrine
 sudo zypper -n in bspwm wmctrl scrot sxhkd rofi feh xdotool jq lightdm-webkit2-greeter picom dunst
 
 # apps
-APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp'
+APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp flash-player flash-player-ppapi'
 
 if [ $OS_VERSION = "opensuse-tumbleweed" ]; then
   APPS+=' spotify-easyrpm'
