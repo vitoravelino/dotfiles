@@ -22,3 +22,7 @@ set tabstop=2
 
 " text
 set textwidth=80
+set ruler
+
+" fix backspace/delete
+set backspace=indent,eol,start
