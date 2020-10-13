@@ -25,6 +25,7 @@
   "aliases": "~/.aliases",
   "antigen": "~/.antigen/config",
   "asdfrc": "~/.asdfrc",
+  "code": "~/bin/code",
   "curlrc": "~/.curlrc",
   "exports": "~/.exports",
   "fehbg": "~/.fehbg",
