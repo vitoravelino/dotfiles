@@ -8,6 +8,7 @@ killall -q picom; picom --config ~/.config/picom/picom.conf -b
 dropbox stop; sleep 1; dropbox start &
 ~/.fehbg &
 ~/.config/polybar/launch.sh &
+xset s off # screensaver
 
 # settings
 # bspc monitor Virtual1 -d home web terminal code chat music video files misc
