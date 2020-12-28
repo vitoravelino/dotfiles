@@ -57,6 +57,8 @@ cd dotfiles
 git checkout bspwm
 
 # repositories
+#
+sudo zypper ar -c https://download.opensuse.org/repositories/multimedia:/apps/$REPO_OS_ID/multimedia:apps.repo
 # polybar
 sudo zypper ar -c https://download.opensuse.org/repositories/X11:Utilities/$REPO_OS_ID/X11:Utilities.repo
 # codecs
@@ -179,6 +181,8 @@ echo -e "\n${GREEN}Installation complete.${NC}\n"
 
 ## NOTE: libjsoncpp22 was available at some point while testing this but disappeared from repo
 echo -e "* Install polybar manually and link libjsoncpp with '${YELLOW}sudo ln -s /usr/lib64/libjsoncpp.so.24 /usr/lib64/libjsoncpp.so.22${NC}'"
+echo -e "* StreamerFX OBS plugin is built for ubuntu and needs some links:"
+echo -e "  sudo ln -s /usr/lib64/libavutil.so.56.51 /usr/lib64/libavutil.so.56\n  sudo ln -s /usr/lib64/libavcodec.so.58.91 /usr/lib64/libavcodec.so.58\n  sudo ln -s /usr/lib64/libswscale.so.5.7 /usr/lib64/libswscale.so.5"
 echo -e "* Setup dropbox by running '${YELLOW}dropbox start -i${NC}'"
 echo -e "* Setup your SSH and PGP keys"
 echo -e "* Check if ${YELLOW}/etc/pam.d/i3lock${NC} is using ${YELLOW}login${NC} and not ${YELLOW}system-auth${NC}"

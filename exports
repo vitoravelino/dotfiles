@@ -1,5 +1,5 @@
 # PATH's
-export GOPATH="$HOME/Workspace/go"
+export GOPATH="$HOME/workspace/go"
 export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin"
 
 # Prefer US English and use UTF-8

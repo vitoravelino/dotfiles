@@ -17,7 +17,7 @@ prompt {
   padding: 5;
 }
 
-element-icon { size: 1.65ch; }
+element-icon { size: 2.4ch; }
 
 #element.selected {
   text-color: #484d5e;

@@ -11,6 +11,7 @@
   "fonts/iosevka-regular.ttf": "~/.fonts/iosevka-regular.ttf",
   "gtk-3.0/bookmarks": "~/.config/gtk-3.0/bookmarks",
   "gtk-3.0/settings.ini": "~/.config/gtk-3.0/settings.ini",
+  "mpd": "~/.config/mpd",
   "multilockscreen/config": "~/.config/multilock/config",
   "multilockscreen/multilockscreen": "~/bin/multilockscreen",
   "picom": "~/.config/picom",
