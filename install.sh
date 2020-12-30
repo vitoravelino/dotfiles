@@ -57,8 +57,14 @@ cd dotfiles
 git checkout bspwm
 
 # repositories
-#
+# keys
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo zypper --gpg-auto-import-keys ref
+# multimedia
 sudo zypper ar -c https://download.opensuse.org/repositories/multimedia:/apps/$REPO_OS_ID/multimedia:apps.repo
+# brave
+sudo zypper ar -c https://brave-browser-rpm-release.s3.brave.com/x86_64/ brave-browser
 # polybar
 sudo zypper ar -c https://download.opensuse.org/repositories/X11:Utilities/$REPO_OS_ID/X11:Utilities.repo
 # codecs
@@ -69,8 +75,6 @@ sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
 sudo zypper ar -c https://download.opensuse.org/repositories/home:antergos/$REPO_OS_ID/home:antergos.repo
 # vscode
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo zypper --gpg-auto-import-keys ref
 sudo zypper -n dup --allow-vendor-change --from packman
 
 # devel
@@ -87,7 +91,7 @@ sudo zypper -n in gtk2-engines gtk2-engine-murrine
 sudo zypper -n in bspwm wmctrl scrot sxhkd rofi feh xdotool jq lightdm-webkit2-greeter picom dunst
 
 # apps
-APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp flash-player flash-player-ppapi'
+APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio obs-v4l2sink vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp flash-player flash-player-ppapi mpd ncmpcpp brave-browser steam'
 
 if [ $OS_VERSION = "opensuse-tumbleweed" ]; then
   APPS+=' spotify-easyrpm'
@@ -101,10 +105,10 @@ sudo zypper -n in google-tinos-fonts google-arimo-fonts google-cousine-fonts fet
 # flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo flatpak update
-sudo flatpak install -y flathub com.bitwarden
 sudo flatpak install -y flathub com.slack.Slack
 sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
 sudo flatpak install -y flathub org.onlyoffice
+sudo flatpak install -y flathub com.wps.Office
 sudo flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
 sudo flatpak install -y flathub com.teamspeak.TeamSpeak
 
@@ -147,8 +151,11 @@ bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
 asdf install
 
 asdf reshim
-npm -g install yarn diff-so-fancy
+npm -g install yarn
+pip install bpytop
 GO111MODULE=on go get github.com/rhysd/dotfiles
+asdf reshim
+yarn global add @neutralinojs/neu @vue/cli diff-so-fancy eslint
 asdf reshim
 
 # Qogir gtk theme
@@ -188,6 +195,7 @@ echo -e "* Setup your SSH and PGP keys"
 echo -e "* Check if ${YELLOW}/etc/pam.d/i3lock${NC} is using ${YELLOW}login${NC} and not ${YELLOW}system-auth${NC}"
 echo -e "* Set eq preset on pulseaudio equalizer"
 echo -e "* Set your OpenWeatherMap API key to the polybar script"
+echo -e "* Change steam (wine) shortcut name ${YELLOW}~/.local/share/applications/wine/Programs/Steam/Steam.desktop${NC}"
 echo -e "* Set Firefox config ${YELLOW}ui.context_menus.after_mouseup${NC} to ${YELLOW}true${NC}"
 
 if [ $OS_VERSION = "opensuse-leap" ]; then
