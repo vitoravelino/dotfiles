@@ -186,6 +186,8 @@ mkdir ~/pictures/screenshots
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
+FIREFOX_COLOR='https://color.firefox.com/?theme=XQAAAAIbAQAAAAAAAABBqYhm849SCia2CaaEGccwS-xMDPsqvOJTAr7MdSg-aIfxWLr1G9WC4LDSwLkx4w-id2jtOOMTunRBOZ722UBF6EvpdolmhlxmD3Or25T8oURi63VMsqda6LPDxPAVCtpokseuG-7zgywuccYqLcmbMinsEmMbl9u1Ho6VqTsj2mghJ82wuI84X8lEKKFlTTbQ1ZyMvSGKaTOUMDGnzD5aU5XH4DoQ6-EnaORmANQs0vSn0f_cHn4A'
+
 ## NOTE: libjsoncpp22 was available at some point while testing this but disappeared from repo
 echo -e "* Install polybar manually and link libjsoncpp with '${YELLOW}sudo ln -s /usr/lib64/libjsoncpp.so.24 /usr/lib64/libjsoncpp.so.22${NC}'"
 echo -e "* StreamerFX OBS plugin is built for ubuntu and needs some links:"
@@ -197,6 +199,7 @@ echo -e "* Set eq preset on pulseaudio equalizer"
 echo -e "* Set your OpenWeatherMap API key to the polybar script"
 echo -e "* Change steam (wine) shortcut name ${YELLOW}~/.local/share/applications/wine/Programs/Steam/Steam.desktop${NC}"
 echo -e "* Set Firefox config ${YELLOW}ui.context_menus.after_mouseup${NC} to ${YELLOW}true${NC}"
+echo -e "* If Firefox Color is not restored, visit ${FIREFOX_COLOR}"
 
 if [ $OS_VERSION = "opensuse-leap" ]; then
   # spotify
