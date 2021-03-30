@@ -1,54 +1,50 @@
 .include /etc/pulse/default.pa
 
-# load-module module-ladspa-sink sink_name=ladspa_output.mbeq_1197.mbeq master=alsa_output.pci-0000_0a_00.3.iec958-stereo plugin=mbeq_1197 label=mbeq control=4.0,2.0,1.0,0.0,0.0,-1.0,-1.0,-2.0,-2.0,0.0,0.0,2.0,3.0,3.0,3.0
+# load-module module-ladspa-sink sink_name=ladspa_output.mbeq_1197.mbeq master=alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo plugin=mbeq_1197 label=mbeq control=4.0,2.0,1.0,0.0,0.0,-1.0,-1.0,-2.0,-2.0,0.0,0.0,2.0,3.0,3.0,3.0
+
+# set-sink-volume alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo 0x10000
+# set-sink-mute alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo no
+# suspend-sink alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo yes
+# set-sink-volume alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo 0xfff8
+# set-sink-mute alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo no
+# suspend-sink alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo yes
+# set-sink-volume alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 0x10000
+# set-sink-mute alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 no
+# suspend-sink alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 yes
+# set-sink-volume alsa_output.pci-0000_0b_00.3.iec958-stereo 0x665f
+# set-sink-mute alsa_output.pci-0000_0b_00.3.iec958-stereo no
+# suspend-sink alsa_output.pci-0000_0b_00.3.iec958-stereo no
+# set-sink-volume ladspa_output.mbeq_1197.mbeq 0x665f
+# set-sink-mute ladspa_output.mbeq_1197.mbeq no
+# suspend-sink ladspa_output.mbeq_1197.mbeq no
+
+# set-source-volume alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor 0x10000
+# set-source-mute alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor no
+# suspend-source alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor yes
+# set-source-volume alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor 0x10000
+# set-source-mute alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor no
+# suspend-source alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor yes
+# set-source-volume alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback 0xeead
+# set-source-mute alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback no
+# suspend-source alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback yes
+# set-source-volume alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo 0x9c9c
+# set-source-mute alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo no
+# suspend-source alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo yes
+# set-source-volume alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor 0x10000
+# set-source-mute alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor no
+# suspend-source alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor yes
+# set-source-volume alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor 0x13330
+# set-source-mute alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor no
+# suspend-source alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor no
+# set-source-volume ladspa_output.mbeq_1197.mbeq.monitor 0x10000
+# set-source-mute ladspa_output.mbeq_1197.mbeq.monitor no
+# suspend-source ladspa_output.mbeq_1197.mbeq.monitor no
+
+# set-card-profile alsa_card.usb-Audioengine_Audioengine_D1-00 output:analog-stereo
+# set-card-profile alsa_card.usb-RODE_MICROPHONESj_Rode_Podcaster-00 output:analog-stereo+input:mono-fallback
+# set-card-profile alsa_card.usb-046d_Logitech_BRIO_86902238-03 input:analog-stereo
+# set-card-profile alsa_card.pci-0000_09_00.1 output:hdmi-stereo-extra2
+# set-card-profile alsa_card.pci-0000_0b_00.3 output:iec958-stereo
+
 # set-default-sink ladspa_output.mbeq_1197.mbeq
-# set-sink-mute alsa_output.pci-0000_0a_00.3.iec958-stereo 0
-
-load-module module-ladspa-sink sink_name=ladspa_output.mbeq_1197.mbeq sink_master=alsa_output.pci-0000_0b_00.3.iec958-stereo plugin=mbeq_1197 label=mbeq control=4.0,2.0,1.0,0.0,0.0,-1.0,-1.0,-2.0,-2.0,0.0,0.0,2.0,3.0,3.0,3.0
-
-set-sink-volume alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo 0x10000
-set-sink-mute alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo no
-suspend-sink alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo no
-set-sink-volume alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo 0xfff8
-set-sink-mute alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo no
-suspend-sink alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo no
-set-sink-volume alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 0x10000
-set-sink-mute alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 no
-suspend-sink alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2 no
-set-sink-volume alsa_output.pci-0000_0b_00.3.iec958-stereo 0x665f
-set-sink-mute alsa_output.pci-0000_0b_00.3.iec958-stereo no
-suspend-sink alsa_output.pci-0000_0b_00.3.iec958-stereo no
-set-sink-volume ladspa_output.mbeq_1197.mbeq 0x665f
-set-sink-mute ladspa_output.mbeq_1197.mbeq no
-suspend-sink ladspa_output.mbeq_1197.mbeq no
-
-set-source-volume alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor 0x10000
-set-source-mute alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor no
-suspend-source alsa_output.usb-Audioengine_Audioengine_D1-00.analog-stereo.monitor no
-set-source-volume alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor 0x10000
-set-source-mute alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor no
-suspend-source alsa_output.usb-RODE_MICROPHONESj_Rode_Podcaster-00.analog-stereo.monitor no
-set-source-volume alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback 0xeead
-set-source-mute alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback no
-suspend-source alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback no
-set-source-volume alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo 0x9c9c
-set-source-mute alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo no
-suspend-source alsa_input.usb-046d_Logitech_BRIO_86902238-03.analog-stereo no
-set-source-volume alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor 0x10000
-set-source-mute alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor no
-suspend-source alsa_output.pci-0000_09_00.1.hdmi-stereo-extra2.monitor no
-set-source-volume alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor 0x13330
-set-source-mute alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor no
-suspend-source alsa_output.pci-0000_0b_00.3.iec958-stereo.monitor no
-set-source-volume ladspa_output.mbeq_1197.mbeq.monitor 0x10000
-set-source-mute ladspa_output.mbeq_1197.mbeq.monitor no
-suspend-source ladspa_output.mbeq_1197.mbeq.monitor no
-
-set-card-profile alsa_card.usb-Audioengine_Audioengine_D1-00 output:analog-stereo
-set-card-profile alsa_card.usb-RODE_MICROPHONESj_Rode_Podcaster-00 output:analog-stereo+input:mono-fallback
-set-card-profile alsa_card.usb-046d_Logitech_BRIO_86902238-03 input:analog-stereo
-set-card-profile alsa_card.pci-0000_09_00.1 output:hdmi-stereo-extra2
-set-card-profile alsa_card.pci-0000_0b_00.3 output:iec958-stereo
-
-set-default-sink ladspa_output.mbeq_1197.mbeq
-set-default-source alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback
+# set-default-source alsa_input.usb-RODE_MICROPHONESj_Rode_Podcaster-00.mono-fallback
