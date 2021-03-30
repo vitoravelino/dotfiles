@@ -7,6 +7,7 @@ OS_VERSION=$(sed -n '/^ID="/s/^.*=//p' /usr/lib/os-release | cut -d'"' -f2)
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
+DOTFILES=$PWD/dotfiles
 
 # support functions
 get_latest_tag() {
@@ -47,14 +48,34 @@ check_os() {
   fi
 }
 
+check_mode() {
+  if [ "$1" == "--laptop" ]; then
+    MODE='laptop'
+  fi
+
+  if [ "$1" == "--desktop" ]; then
+    MODE='desktop'
+  fi
+
+  if [[ $MODE != "desktop" && $MODE != "laptop" ]]; then
+    echo 'A valid argument should be passed: install.sh [--laptop|--desktop]'
+    exit 1
+  fi
+}
+
 # main
+if ! [ $# -eq 1 ]; then
+  echo 'An argument should be passed: install.sh [--laptop|--desktop]'
+  exit 1
+fi
+
+check_mode $1
 check_dependencies
 check_os
 
 # cloning repo
 git clone https://github.com/vitoravelino/dotfiles.git
-cd dotfiles
-git checkout bspwm
+cd $DOTFILES
 
 # repositories
 # keys
@@ -69,12 +90,16 @@ sudo zypper ar -c https://brave-browser-rpm-release.s3.brave.com/x86_64/ brave-b
 sudo zypper ar -c https://download.opensuse.org/repositories/X11:Utilities/$REPO_OS_ID/X11:Utilities.repo
 # codecs
 sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/$REPO_OS_ID/ packman
-# nvidia
-sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
 # lightdm webkit greeter
 sudo zypper ar -c https://download.opensuse.org/repositories/home:antergos/$REPO_OS_ID/home:antergos.repo
 # vscode
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
+
+# nvidia
+if [ $MODE == 'desktop' ]; then
+  sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
+fi
+
 sudo zypper -n dup --allow-vendor-change --from packman
 
 # devel
@@ -110,7 +135,6 @@ sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
 sudo flatpak install -y flathub org.onlyoffice
 sudo flatpak install -y flathub com.wps.Office
 sudo flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
-sudo flatpak install -y flathub com.teamspeak.TeamSpeak
 
 # lightdm
 sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/lightdm
@@ -118,8 +142,8 @@ sudo cp -R $PWD/webkit-greeter/build /usr/share/lightdm-webkit/themes/custom
 sudo sed -i 's/webkit_theme        = antergos/webkit_theme        = custom/g' /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo cp 01-my-lightdm.conf /usr/share/lightdm/lightdm.conf.d/
 
-# todo: copy mouse natural scrolling conf
-# todo: how to set bspwm as window manager?
+# natural scrolling
+sudo ln -s $DOTFILES/X11/xorg.conf.d/25-natural-scrolling.conf /etc/X11/xorg.conf.d/25-natural-scrolling.conf
 
 # i3lock-color
 git clone https://github.com/Raymo111/i3lock-color.git
@@ -128,18 +152,20 @@ chmod +x build.sh
 chmod +x install-i3lock-color.sh
 ./build.sh
 ./install-i3lock-color.sh
-cd $HOME/dotfiles
-rm -rf i3lock-color
+cd $DOTFILES
+rm -rf $DOTFILES/i3lock-color
 
 # fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-$HOME/.fzf/install --key-bindings --completion --no-update-rc
+$FZF=$HOME/.fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git $FZF
+$FZF/install --key-bindings --completion --no-update-rc
 
 # asdf
-ln -s $PWD/tool-versions $HOME/.tool-versions
+ASDF=$HOME/.asdf
+ln -s $DOTFILES/tool-versions $HOME/.tool-versions
 ASDF_BRANCH=$(get_latest_tag 'asdf-vm/asdf')
-git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch $ASDF_BRANCH
-. $HOME/.asdf/asdf.sh
+git clone https://github.com/asdf-vm/asdf.git $ASDF --branch $ASDF_BRANCH
+. $ASDF/asdf.sh
 
 asdf plugin-add golang
 asdf plugin-add ruby
@@ -147,7 +173,7 @@ asdf plugin-add erlang
 asdf plugin-add elixir
 asdf plugin-add nodejs
 
-bash $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
+bash $ASDF/plugins/nodejs/bin/import-release-team-keyring
 asdf install
 
 asdf reshim
@@ -155,7 +181,7 @@ npm -g install yarn
 pip install bpytop
 GO111MODULE=on go get github.com/rhysd/dotfiles
 asdf reshim
-yarn global add @neutralinojs/neu @vue/cli diff-so-fancy eslint
+yarn global add diff-so-fancy eslint
 asdf reshim
 
 # Qogir gtk theme
@@ -170,7 +196,7 @@ chsh -s /usr/bin/zsh
 sudo usermod -aG docker $USER
 
 # cursor size fix
-sudo bash -c 'echo "Xcursor.size: 16" >> /etc/X11/Xresources'
+# sudo bash -c 'echo "Xcursor.size: 16" >> /etc/X11/Xresources'
 
 # symlink all dotfiles
 dotfiles link
@@ -182,14 +208,14 @@ multilockscreen -u ~/pictures/wallpaper.png --fx blur
 curl -L git.io/antigen > $HOME/.antigen/antigen.zsh
 
 # misc
-mkdir ~/pictures/screenshots
+mkdir -p ~/pictures/screenshots
 
 echo -e "\n${GREEN}Installation complete.${NC}\n"
 
 FIREFOX_COLOR='https://color.firefox.com/?theme=XQAAAAIbAQAAAAAAAABBqYhm849SCia2CaaEGccwS-xMDPsqvOJTAr7MdSg-aIfxWLr1G9WC4LDSwLkx4w-id2jtOOMTunRBOZ722UBF6EvpdolmhlxmD3Or25T8oURi63VMsqda6LPDxPAVCtpokseuG-7zgywuccYqLcmbMinsEmMbl9u1Ho6VqTsj2mghJ82wuI84X8lEKKFlTTbQ1ZyMvSGKaTOUMDGnzD5aU5XH4DoQ6-EnaORmANQs0vSn0f_cHn4A'
 
-## NOTE: libjsoncpp22 was available at some point while testing this but disappeared from repo
-echo -e "* Install polybar manually and link libjsoncpp with '${YELLOW}sudo ln -s /usr/lib64/libjsoncpp.so.24 /usr/lib64/libjsoncpp.so.22${NC}'"
+## NOTE: dependency was fixed but I'll leave this here in case it happens again
+# echo -e "* Install polybar manually and link libjsoncpp with '${YELLOW}sudo ln -s /usr/lib64/libjsoncpp.so.24 /usr/lib64/libjsoncpp.so.22${NC}'"
 echo -e "* StreamerFX OBS plugin is built for ubuntu and needs some links:"
 echo -e "  sudo ln -s /usr/lib64/libavutil.so.56.51 /usr/lib64/libavutil.so.56\n  sudo ln -s /usr/lib64/libavcodec.so.58.91 /usr/lib64/libavcodec.so.58\n  sudo ln -s /usr/lib64/libswscale.so.5.7 /usr/lib64/libswscale.so.5"
 echo -e "* Setup dropbox by running '${YELLOW}dropbox start -i${NC}'"
@@ -207,4 +233,7 @@ if [ $OS_VERSION = "opensuse-leap" ]; then
 fi
 
 # nvidia
-echo -e "* Run ${YELLOW}sudo zypper -n in x11-video-nvidiaG05 ${NC}to install NVIDIA drivers"
+if [ $MODE == 'desktop' ]; then
+  echo -e "* Run ${YELLOW}sudo zypper -n in x11-video-nvidiaG05 ${NC}to install NVIDIA drivers"
+  echo -e "* And copy X11/xorg.conf.d/20-nvidia.conf to /etc"
+fi
