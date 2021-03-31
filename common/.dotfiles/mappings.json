@@ -1,7 +1,5 @@
 {
   "alacritty": "~/.config/alacritty",
-  "bspwm": "~/.config/bspwm",
-  "dunst": "~/.config/dunst",
   "fontconfig": "~/.config/fontconfig",
   "fonts/iosevka-extended.ttf": "~/.fonts/iosevka-extended.ttf",
   "fonts/iosevka-fixed-extended.ttf": "~/.fonts/iosevka-fixed-extended.ttf",
@@ -15,19 +13,15 @@
   "multilockscreen/config": "~/.config/multilock/config",
   "multilockscreen/multilockscreen": "~/bin/multilockscreen",
   "picom": "~/.config/picom",
-  "polybar": "~/.config/polybar",
   "pulse/default.pa": "~/.config/pulse/default.pa",
   "pulse/daemon.conf": "~/.config/pulse/daemon.conf",
-  "rofi": "~/.config/rofi",
   "sxhkd": "~/.config/sxhkd",
-
-  ".editorconfig": "~/.editorconfig",
 
   "aliases": "~/.aliases",
   "antigen": "~/.antigen/config",
   "asdfrc": "~/.asdfrc",
-  "code": "~/bin/code",
   "curlrc": "~/.curlrc",
+  "editorconfig": "~/.editorconfig",
   "exports": "~/.exports",
   "fehbg": "~/.fehbg",
   "gemrc": "~/.gemrc",

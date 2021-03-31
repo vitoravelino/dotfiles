@@ -149,13 +149,9 @@ if [ $MODE == 'laptop' ]; then
   sudo ln -s $DOTFILES/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
 fi
 
-if [ $MODE == 'desktop' ]; then
-  sudo ln -s $DOTFILES/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/20-nvidia.conf
-fi
-
 # i3lock-color
 git clone https://github.com/Raymo111/i3lock-color.git
-cd $DOTFILES/i3lock-color
+cd i3lock-color
 chmod +x build.sh
 chmod +x install-i3lock-color.sh
 ./build.sh

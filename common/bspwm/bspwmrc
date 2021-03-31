@@ -13,10 +13,10 @@ xset s off # screensaver
 # settings
 # bspc monitor Virtual1 -d home web terminal code chat music video files misc
 # bspc monitor HDMI-1 -d home web terminal code chat music video files misc
-bspc monitor DP-0 -d home web terminal code chat music video files misc
+bspc monitor eDP-1 -d home web terminal code chat music video files misc
 
-bspc config border_width               2
-bspc config window_gap                 8
+bspc config border_width               4
+bspc config window_gap                 16
 bspc config top_padding                32
 bspc config borderless_monocle         true
 bspc config gapless_monocle            false

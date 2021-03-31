@@ -1,0 +1,9 @@
+{
+  "bspwm": "~/.config/bspwm",
+  "dunst": "~/.config/dunst",
+  "polybar": "~/.config/polybar",
+  "rofi": "~/.config/rofi",
+
+  "code": "~/bin/code",
+  "Xresources": "~/.Xresources"
+}
