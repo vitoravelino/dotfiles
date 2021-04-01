@@ -14,6 +14,19 @@ super + ctrl + Delete
   ~/.config/rofi/scripts/powermenu.sh
 
 #
+# function keys (fn)
+#
+
+XF86MonBrightness{Up,Down}
+  brightnessctl s 10%{+,-}; notify-send "Brightness: $(light | cut -d '.' -f 1)%"
+
+XF86Audio{Raise,Lower}Volume
+  pamixer -{i,d} 10; notify-send "Volume: $(pamixer --get-volume)%"
+
+XF86AudioMute
+  ~/.config/sxhkd/toggle-mute.sh
+
+#
 # screenshots (scrot)
 #
 
@@ -55,7 +68,7 @@ super + q
 
 # alternate
 super + {_, shift + } Tab
-  bspc node -f {next,prev}.local
+  bspc node -f {next,prev}.local.!hidden.window
 
 # focus direction
 super + {Left,Down,Up,Right}
