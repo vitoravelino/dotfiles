@@ -21,7 +21,7 @@ get_icon() {
     echo $icon
 }
 
-KEY=""
+KEY=`cat ~/.config/.openweathermap_key`
 CITY="João Pessoa, BR"
 UNITS="metric"
 SYMBOL="°C"

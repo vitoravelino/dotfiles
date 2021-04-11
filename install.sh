@@ -239,17 +239,15 @@ echo -e "* Setup dropbox by running '${YELLOW}dropbox start -i${NC}'"
 echo -e "* Setup your SSH and PGP keys"
 echo -e "* Check if ${YELLOW}/etc/pam.d/i3lock${NC} is using ${YELLOW}login${NC} and not ${YELLOW}system-auth${NC}"
 echo -e "* Set eq preset on pulseaudio equalizer"
-echo -e "* Set your OpenWeatherMap API key to the polybar script"
+echo -e "* Set OpenWeatherMap API key: ${YELLOW}echo KEY_VALUE > ~/.config/openweathermap_key${NC}"
 echo -e "* Change steam (wine) shortcut name ${YELLOW}~/.local/share/applications/wine/Programs/Steam/Steam.desktop${NC}"
 echo -e "* Set Firefox config ${YELLOW}ui.context_menus.after_mouseup${NC} to ${YELLOW}true${NC}"
 echo -e "* If Firefox Color is not restored, visit ${FIREFOX_COLOR}"
 
 if [ $OS_VERSION = "opensuse-leap" ]; then
-  # spotify
   echo -e "* Go to ${YELLOW}https://github.com/megamaced/spotify-easyrpm ${NC}and install it via 1-click yast install"
 fi
 
-# nvidia
 if [ $MODE == 'desktop' ]; then
   echo -e "* Run ${YELLOW}sudo zypper -n in x11-video-nvidiaG05 ${NC}to install NVIDIA drivers"
   echo -e "* And copy X11/xorg.conf.d/20-nvidia.conf to /etc"
