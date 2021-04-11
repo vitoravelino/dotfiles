@@ -5,5 +5,6 @@
   "rofi": "~/.config/rofi",
 
   "code": "~/bin/code",
+  "gtk-3.0/settings.ini": "~/.config/gtk-3.0/settings.ini",
   "Xresources": "~/.Xresources"
 }

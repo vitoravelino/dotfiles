@@ -147,6 +147,7 @@ sudo ln -s $DOTFILES/X11/xorg.conf.d/25-natural-scrolling.conf /etc/X11/xorg.con
 
 if [ $MODE == 'laptop' ]; then
   sudo ln -s $DOTFILES/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+  sudo ln -s $DOTFILES/etc/profile.d/dpi.sh /etc/profile.d/dpi.sh
 fi
 
 if [ $MODE == 'desktop' ]; then
@@ -207,7 +208,15 @@ sudo usermod -aG docker $USER
 # sudo bash -c 'echo "Xcursor.size: 16" >> /etc/X11/Xresources'
 
 # symlink all dotfiles
-dotfiles link
+DOTFILES_REPO_PATH=$DOTFILES/common dotfiles link
+
+if [ $MODE == 'laptop' ]; then
+  DOTFILES_REPO_PATH=$DOTFILES/laptop dotfiles link
+fi
+
+if [ $MODE == 'desktop' ]; then
+  DOTFILES_REPO_PATH=$DOTFILES/desktop dotfiles link
+fi
 
 # lockscreen
 multilockscreen -u ~/pictures/wallpaper.png --fx blur
