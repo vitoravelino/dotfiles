@@ -10,4 +10,5 @@ else
   STATE="unmuted ($(pamixer --get-volume)%)"
 fi
 
+dunstctl close
 notify-send "Volume: $STATE"

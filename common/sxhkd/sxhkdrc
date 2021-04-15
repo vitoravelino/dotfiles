@@ -18,10 +18,10 @@ super + ctrl + Delete
 #
 
 XF86MonBrightness{Up,Down}
-  brightnessctl s 10%{+,-}; notify-send "Brightness: $(light | cut -d '.' -f 1)%"
+  ~/.config/sxhkd/brightness.sh {up,down}
 
 XF86Audio{Raise,Lower}Volume
-  pamixer -{i,d} 10; notify-send "Volume: $(pamixer --get-volume)%"
+  ~/.config/sxhkd/volume.sh {up,down}
 
 XF86AudioMute
   ~/.config/sxhkd/toggle-mute.sh
