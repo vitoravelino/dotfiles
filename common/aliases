@@ -1,2 +1,3 @@
 alias ls='ls -F --color=auto'
 alias work='cd ~/Workspace'
+alias cat=bat
