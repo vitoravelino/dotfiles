@@ -122,6 +122,10 @@ if [ $OS_VERSION = "opensuse-tumbleweed" ]; then
   APPS+=' spotify-easyrpm'
 fi
 
+if [ $MODE == 'laptop' ]; then
+  APPS+=' pamixer brightnessctl'
+fi
+
 sudo zypper -n in $APPS
 
 # fonts
@@ -246,6 +250,10 @@ echo -e "* If Firefox Color is not restored, visit ${FIREFOX_COLOR}"
 
 if [ $OS_VERSION = "opensuse-leap" ]; then
   echo -e "* Go to ${YELLOW}https://github.com/megamaced/spotify-easyrpm ${NC}and install it via 1-click yast install"
+fi
+
+if [ $MODE == 'laptop' ]; then
+  echo -e "* Download and install manually light from ${YELLOW}https://build.opensuse.org/package/show/home:OmniOBS/light${NC}"
 fi
 
 if [ $MODE == 'desktop' ]; then
