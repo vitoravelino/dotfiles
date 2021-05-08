@@ -1,6 +1,7 @@
 # PATH's
 export GOPATH="$HOME/workspace/go"
-export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin"
+export FLUTTER_ROOT="$HOME/workspace/flutter"
+export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin:$FLUTTER_ROOT/bin"
 
 # Prefer US English and use UTF-8
 export LANG="en_US"
