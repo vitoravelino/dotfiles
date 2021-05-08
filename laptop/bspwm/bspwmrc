@@ -2,7 +2,7 @@
 
 # scripts
 killall -q sxhkd; sxhkd &
-killall -q redshift; redshift &
+killall -q redshift; redshift -x; redshift &
 killall -q dunst; dunst &
 killall -q picom; picom --config ~/.config/picom/picom.conf -b
 dropbox stop; sleep 1; dropbox start &
