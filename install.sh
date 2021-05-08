@@ -113,7 +113,7 @@ sudo zypper -n in libev-devel xcb libxcb-devel xcb-util-image-devel xcb-util-dev
 sudo zypper -n in gtk2-engines gtk2-engine-murrine
 
 # bspwm and cia
-sudo zypper -n in bspwm wmctrl scrot sxhkd rofi feh xdotool jq lightdm-webkit2-greeter picom dunst pamixer brightnessctl polybar
+sudo zypper -n in bspwm wmctrl scrot sxhkd rofi feh xdotool jq lightdm-webkit2-greeter picom dunst pamixer polybar
 
 # apps
 APPS='vlc vlc-codecs keepassxc dropbox hexchat libreoffice screenfetch sensors pulseaudio-equalizer htop inkscape optipng xdotool sshfs obs-studio obs-v4l2sink vlc vlc-codecs docker-compose alacritty code discord flatpak wine lutris zsh bat nautilus pavucontrol redshift guvcview fortune gimp flash-player flash-player-ppapi mpd ncmpcpp brave-browser steam'
