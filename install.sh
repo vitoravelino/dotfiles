@@ -175,11 +175,12 @@ $FZF/install --key-bindings --completion --no-update-rc
 
 # asdf
 ASDF=$HOME/.asdf
-ln -s $DOTFILES/tool-versions $HOME/.tool-versions
+ln -s $DOTFILES/common/tool-versions $HOME/.tool-versions
 ASDF_BRANCH=$(get_latest_tag 'asdf-vm/asdf')
 git clone https://github.com/asdf-vm/asdf.git $ASDF --branch $ASDF_BRANCH
 . $ASDF/asdf.sh
 
+asdf plugin-add crystal
 asdf plugin-add golang
 asdf plugin-add ruby
 asdf plugin-add erlang
