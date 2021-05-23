@@ -5,7 +5,7 @@
 
 #window {
   width: 100%;
-  padding: 960;
+  padding: 1260;
   background-color: #1f2430e0;
 }
 
