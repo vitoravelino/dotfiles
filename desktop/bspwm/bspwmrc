@@ -9,6 +9,7 @@ dropbox stop; sleep 1; dropbox start &
 ~/.fehbg &
 ~/.config/polybar/launch.sh &
 xset s off # screensaver
+xsetroot -cursor_name left_ptr # cursor size
 
 # settings
 # bspc monitor HDMI-1 -d home web terminal code chat music video files misc
