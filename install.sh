@@ -86,8 +86,6 @@ sudo zypper --gpg-auto-import-keys ref
 sudo zypper ar -c https://download.opensuse.org/repositories/multimedia:/apps/$REPO_OS_ID/multimedia:apps.repo
 # brave
 sudo zypper ar -c https://brave-browser-rpm-release.s3.brave.com/x86_64/ brave-browser
-# polybar
-sudo zypper ar -c https://download.opensuse.org/repositories/X11:Utilities/$REPO_OS_ID/X11:Utilities.repo
 # codecs
 sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/$REPO_OS_ID/ packman
 # lightdm webkit greeter
