@@ -151,20 +151,20 @@ sudo flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
 
 # lightdm
 sudo update-alternatives --set default-displaymanager /usr/lib/X11/displaymanagers/lightdm
-sudo cp -R $DOTFILES/webkit-greeter/build /usr/share/lightdm-webkit/themes/custom
+sudo cp -R $DOTFILES/common/webkit-greeter/build /usr/share/lightdm-webkit/themes/custom
 sudo sed -i 's/webkit_theme        = antergos/webkit_theme        = custom/g' /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo cp 01-my-lightdm.conf /usr/share/lightdm/lightdm.conf.d/
+sudo cp $DOTFILES/common/01-my-lightdm.conf /usr/share/lightdm/lightdm.conf.d/
 
 # natural scrolling
-sudo ln -s $DOTFILES/X11/xorg.conf.d/25-natural-scrolling.conf /etc/X11/xorg.conf.d/25-natural-scrolling.conf
+sudo ln -s $DOTFILES/common/X11/xorg.conf.d/25-natural-scrolling.conf /etc/X11/xorg.conf.d/25-natural-scrolling.conf
 
 if [ $MODE == 'laptop' ]; then
-  sudo ln -s $DOTFILES/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
-  sudo ln -s $DOTFILES/etc/profile.d/dpi.sh /etc/profile.d/dpi.sh
+  sudo ln -s $DOTFILES/laptop/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
+  sudo ln -s $DOTFILES/laptop/etc/profile.d/dpi.sh /etc/profile.d/dpi.sh
 fi
 
 if [ $MODE == 'desktop' ]; then
-  sudo ln -s $DOTFILES/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+  sudo ln -s $DOTFILES/desktop/X11/xorg.conf.d/20-nvidia.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 fi
 
 # i3lock-color
