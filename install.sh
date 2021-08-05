@@ -2,7 +2,7 @@
 
 # variables
 MISSING_DEPENDENCIES=()
-LEAP_VERSION='15.2'
+LEAP_VERSION='15.3'
 OS_VERSION=$(sed -n '/^ID="/s/^.*=//p' /usr/lib/os-release | cut -d'"' -f2)
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
@@ -88,14 +88,25 @@ sudo zypper ar -c https://download.opensuse.org/repositories/multimedia:/apps/$R
 sudo zypper ar -c https://brave-browser-rpm-release.s3.brave.com/x86_64/ brave-browser
 # codecs
 sudo zypper ar -c http://ftp.gwdg.de/pub/linux/misc/packman/suse/$REPO_OS_ID/ packman
-# lightdm webkit greeter
-sudo zypper ar -c https://download.opensuse.org/repositories/home:antergos/$REPO_OS_ID/home:antergos.repo
 # vscode
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/zypp/repos.d/vscode.repo'
 
-# nvidia
 if [ $MODE == 'desktop' ]; then
+  # nvidia
   sudo zypper ar -c https://download.nvidia.com/opensuse/$NVIDIA_REPO_OS_ID NVIDIA
+fi
+
+if [ $OS_VERSION = "opensuse-tumbleweed" ]; then
+  # lightdm webkit greeter
+  sudo zypper ar -c https://download.opensuse.org/repositories/home:antergos/$REPO_OS_ID/home:antergos.repo
+fi
+
+if [ $OS_VERSION = "opensuse-leap" ]; then
+  # polybar
+  sudo zypper ar -c https://download.opensuse.org/repositories/X11:/Utilities/$REPO_OS_ID/X11:Utilities.repo
+
+  # lightdm webkit greet, brightnessctl, etc
+  sudo zypper ar -c https://download.opensuse.org/repositories/home:vitoravelino_bkp/$LEAP_VERSION/home:vitoravelino_bkp.repo
 fi
 
 sudo zypper -n dup --allow-vendor-change --from packman
