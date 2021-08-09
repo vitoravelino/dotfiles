@@ -195,6 +195,7 @@ asdf plugin-add ruby
 asdf plugin-add erlang
 asdf plugin-add elixir
 asdf plugin-add nodejs
+asdf plugin-add python
 
 bash $ASDF/plugins/nodejs/bin/import-release-team-keyring
 asdf install
