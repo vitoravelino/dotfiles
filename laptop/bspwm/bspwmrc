@@ -5,16 +5,16 @@ killall -q sxhkd; sxhkd &
 killall -q redshift; redshift -x; redshift &
 killall -q dunst; dunst &
 killall -q picom; picom --config ~/.config/picom/picom.conf -b
-dropbox stop; sleep 1; dropbox start &
+dropbox &
 ~/.fehbg &
 ~/.config/polybar/launch.sh &
-xset s off # screensaver
+#xset dpms 300 300 300 # screensaver
 
 # settings
-bspc monitor eDP-1 -d home web terminal code chat music video files misc
+bspc monitor eDP -d home web terminal code chat music video files misc
 
-bspc config border_width               4
-bspc config window_gap                 16
+bspc config border_width               2
+bspc config window_gap                 8
 bspc config top_padding                32
 bspc config borderless_monocle         true
 bspc config gapless_monocle            false
@@ -32,7 +32,7 @@ bspc desktop chat --layout monocle
 bspc desktop music --layout monocle
 bspc desktop video --layout monocle
 
-bspc rule -a Firefox desktop=web follow=on
+bspc rule -a firefox desktop=web follow=on
 bspc rule -a Alacritty desktop=terminal follow=on
 bspc rule -a Code desktop=code follow=on
 bspc rule -a Slack desktop=chat follow=on

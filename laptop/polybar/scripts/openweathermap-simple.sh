@@ -22,7 +22,7 @@ get_icon() {
 }
 
 KEY=`cat ~/.config/.openweathermap_key`
-CITY="João Pessoa, BR"
+CITY="João%20Pessoa,%20BR"
 UNITS="metric"
 SYMBOL="°C"
 

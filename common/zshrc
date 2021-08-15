@@ -8,10 +8,11 @@ source ~/.aliases
 source ~/.antigen/config
 
 # load fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # load asdf
-source ~/.asdf/asdf.sh
+source /opt/asdf-vm/asdf.sh
 
 fpath=($HOME/.asdf/completions $fpath)
 autoload -Uz compinit

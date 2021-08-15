@@ -4,25 +4,25 @@
   text-color: #484d5e;
 }
 
-#window {
+window {
   width: 100%;
-  padding: 1247;
+  padding: 575;
   background-color: #1f2430e0;
   children: [ horibox ];
 }
 
-#horibox {
+horibox {
   children: [ listview ];
 }
 
-#listview {
+listview {
   layout: horizontal;
 }
 
-#element {
-  padding: 5px 0;
+element {
+  padding: 0 34;
 }
 
-#element.selected {
+element-text selected {
   text-color: #DADBC0;
 }

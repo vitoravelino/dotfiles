@@ -1,5 +1,4 @@
 # PATH's
-export GOPATH="$HOME/workspace/go"
 export FLUTTER_ROOT="$HOME/workspace/flutter"
 export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin:$FLUTTER_ROOT/bin"
 export JVM_LIB=$JAVA_HOME/lib/server/libjvm.so
