@@ -2,6 +2,7 @@
 export GOPATH="$HOME/workspace/go"
 export FLUTTER_ROOT="$HOME/workspace/flutter"
 export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin:$FLUTTER_ROOT/bin"
+export JVM_LIB=$JAVA_HOME/lib/server/libjvm.so
 
 # Prefer US English and use UTF-8
 export LANG="en_US"
@@ -9,3 +10,7 @@ export LC_ALL="en_US.UTF-8"
 
 # Editor
 export EDITOR=vim
+export BUNDLE_EDITOR=vscode
+
+# rails spring
+export DISABLE_SPRING=true
