@@ -40,7 +40,7 @@ shift + Print
 
 # selection
 super + shift + Print
-  scrot -s -e 'mv $f ~/pictures/screenshots/; xclip -selection clipboard -t image/png -i ~/pictures/screenshots/$f'; aplay ~/.config/sxhkd/screenshot.wav
+  flameshot gui; aplay ~/.config/sxhkd/screenshot.wav
 
 #
 # sxhkd
