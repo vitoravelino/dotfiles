@@ -1,6 +1,6 @@
 # PATH's
 export FLUTTER_ROOT="$HOME/workspace/flutter"
-export PATH="$PATH:$GOPATH/bin:$HOME/.local/bin:$FLUTTER_ROOT/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$FLUTTER_ROOT/bin"
 export JVM_LIB=$JAVA_HOME/lib/server/libjvm.so
 
 # Prefer US English and use UTF-8
