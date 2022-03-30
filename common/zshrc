@@ -12,7 +12,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # load asdf
-source /opt/asdf-vm/asdf.sh
+source ~/.asdf/asdf.sh
 
 fpath=($HOME/.asdf/completions $fpath)
 autoload -Uz compinit
