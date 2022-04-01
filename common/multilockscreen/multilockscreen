@@ -92,17 +92,17 @@ lock() {
   i3lock \
 		-i "$image" \
 		--screen "$display_on" \
-		--timepos='ix-202:iy-1' \
-		--datepos='ix-287:iy+29' \
-		--clock --date-align 1 --datestr "$locktext" --datesize=17 --timesize=38 \
-		--insidecolor=$insidecolor --ringcolor=$ringcolor --line-uses-inside \
-		--keyhlcolor=$keyhlcolor --bshlcolor=$bshlcolor --separatorcolor=$separatorcolor \
-		--insidevercolor=$insidevercolor --insidewrongcolor=$insidewrongcolor \
-		--ringvercolor=$ringvercolor --ringwrongcolor=$ringwrongcolor --indpos='x+335:y+h-85' \
-		--radius=26 --ring-width=5 --veriftext='' --wrongtext='' --wrongcolor="$nocolor" \
-		--verifcolor="$verifcolor" --timecolor="$timecolor" --datecolor="$datecolor" \
+		--time-pos='ix-202:iy-1' \
+		--date-pos='ix-287:iy+29' \
+		--clock --date-align 1 --date-str "$locktext" --date-size=17 --time-size=38 \
+		--inside-color=$insidecolor --ring-color=$ringcolor --line-uses-inside \
+		--keyhl-color=$keyhlcolor --bshl-color=$bshlcolor --separator-color=$separatorcolor \
+		--insidever-color=$insidevercolor --insidewrong-color=$insidewrongcolor \
+		--ringver-color=$ringvercolor --ringwrong-color=$ringwrongcolor --ind-pos='x+335:y+h-85' \
+		--radius=26 --ring-width=5 --verif-text='' --wrong-text='' --wrong-color="$nocolor" \
+		--verif-color="$verifcolor" --time-color="$timecolor" --date-color="$datecolor" \
 		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
-		--noinputtext='' --force-clock --pass-media-keys --pass-screen-keys --pass-power-keys \
+		--noinput-text='' --force-clock --pass-media-keys --pass-screen-keys --pass-power-keys \
 		"${lockargs[@]}"
 }
 
@@ -118,14 +118,14 @@ failsafe() {
 	i3lock \
 		-c "$bgcolor" \
 		--screen "$display_on" \
-		--timepos='ix-170:iy-0' \
-		--datepos='ix-240:iy+25' \
-		--clock --date-align 1 --datestr "$locktext" \
-		--indpos='x+280:y+h-70' \
-		--radius=20 --ring-width=4 --veriftext='' --wrongtext='' --wrongcolor="$error" \
-		--verifcolor="$text" --timecolor="$text" --datecolor="$text" \
+		--time-pos='ix-170:iy-0' \
+		--date-pos='ix-240:iy+25' \
+		--clock --date-align 1 --date-str "$locktext" \
+		--ind-pos='x+280:y+h-70' \
+		--radius=20 --ring-width=4 --verif-text='' --wrong-text='' --wrong-color="$error" \
+		--verif-color="$text" --time-color="$text" --date-color="$text" \
 		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
-		--noinputtext='' --force-clock
+		--noinput-text='' --force-clock
 }
 
 
@@ -561,10 +561,10 @@ update () {
 
 	echof act "Rendering final lockscreen images..."
 
-	create_loginbox
-	for pos in "${positions[@]}"; do
-		PARAM_RECT="$PARAM_RECT $RECTANGLE -geometry $pos -composite "
-	done
+	# create_loginbox
+	# for pos in "${positions[@]}"; do
+	# 	PARAM_RECT="$PARAM_RECT $RECTANGLE -geometry $pos -composite "
+	# done
 
 	if [ ! -z "$description" ]; then
 		create_description
