@@ -27,3 +27,5 @@ if [ -x /usr/bin/fortune ] ; then
     echo
     /usr/bin/fortune
 fi
+
+eval $(keychain --eval --quiet id_rsa)

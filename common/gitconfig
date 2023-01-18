@@ -39,5 +39,6 @@
 
 [format]
     signoff = true
+
 [init]
     defaultbranch = main
