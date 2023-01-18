@@ -36,11 +36,13 @@ bspc rule -a firefox desktop=web follow=on
 bspc rule -a Alacritty desktop=terminal follow=on
 bspc rule -a Code desktop=code follow=on
 bspc rule -a Slack desktop=chat follow=on
+bspc rule -a TelegramDesktop desktop=chat follow=on
 bspc rule -a discord desktop=chat follow=on
-bspc rule -a spotify desktop=music follow=on
+bspc rule -a Spotify desktop=music follow=on
 bspc rule -a vlc desktop=video follow=on
 bspc rule -a Org.gnome.Nautilus desktop=files follow=on
 bspc rule -a KeePassXC desktop=misc state=floating follow=on
 bspc rule -a "TeamSpeak 3" desktop=misc state=floating follow=on
 bspc rule -a Lutris desktop=misc follow=on
 bspc rule -a Steam desktop=misc state=floating follow=on
+bspc rule -a Peek state=floating follow=on
