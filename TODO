@@ -1,0 +1,4 @@
+* migrate install.sh to archlinux
+* replace lightdm-webkit2 greeter with web-greeter (fork)
+* install baobab (disk analyzer)
+* install localepurge and configure /etc/locale.nopurge
