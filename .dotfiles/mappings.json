@@ -1,0 +1,18 @@
+{
+  "alacritty": "~/.config/alacritty",
+  "gnupg": "~/.gnupg",
+
+  "aliases": "~/.aliases",
+  "antigen": "~/.antigen/config",
+  "asdfrc": "~/.asdfrc",
+  "curlrc": "~/.curlrc",
+  "editorconfig": "~/.editorconfig",
+  "exports": "~/.exports",
+  "gemrc": "~/.gemrc",
+  "gitconfig": "~/.gitconfig",
+  "gitignore": "~/.gitignore",
+  "hushlogin": "~/.hushlogin",
+  "ssh_config": "~/.ssh/config",
+  "vimrc": "~/.vimrc",
+  "zshrc": "~/.zshrc"
+}

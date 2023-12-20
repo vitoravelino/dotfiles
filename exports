@@ -1,0 +1,9 @@
+# PATH's
+export GPG_TTY=$(tty)
+
+# Editor
+export EDITOR=vim
+export BUNDLE_EDITOR=code
+
+# rails spring
+export DISABLE_SPRING=true

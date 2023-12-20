@@ -1,0 +1,3 @@
+gnupg/*
+gnupg/!gpg-agent.conf
+gnupg/!gpg.conf

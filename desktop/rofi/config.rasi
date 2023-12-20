@@ -1,6 +1,0 @@
-configuration {
-  lines: 8;
-  font: "Iosevka Extended 11";
-  show-icons: true;
-  line-padding: 5;
-}
