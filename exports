@@ -1,6 +1,9 @@
 # PATH's
 export GPG_TTY=$(tty)
 
+# LANG
+export LANG="en_US.UTF-8"
+
 # Editor
 export EDITOR=vim
 export BUNDLE_EDITOR=code
