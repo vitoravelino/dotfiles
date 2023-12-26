@@ -29,19 +29,18 @@ yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
-home,web,terminal,code,chat,music,video,files,misc
-
-# yabai -m space 1 --label home
-# yabai -m space 2 --label web
-# yabai -m space 3 --label terminal
-# yabai -m space 4 --label code
-# yabai -m space 5 --label chat
-# yabai -m space 6 --label music
-# yabai -m space 7 --label video
-# yabai -m space 8 --label files
-# yabai -m space 9 --label misc
+yabai -m space 1 --label home
+yabai -m space 2 --label web
+yabai -m space 3 --label terminal
+yabai -m space 4 --label code
+yabai -m space 5 --label chat
+yabai -m space 6 --label music
+yabai -m space 7 --label video
+yabai -m space 8 --label files
+yabai -m space 9 --label misc
 
 yabai -m config --space 2 layout stack
+yabai -m config --space 5 layout stack
 
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^qemu-system-aarch64$" manage=off

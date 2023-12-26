@@ -163,6 +163,9 @@ cmd + lctrl - m : yabai -m space --layout $(yabai -m query --spaces --space | jq
 
 cmd - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first || yabai -m window --focus next || yabai -m window --focus first
 
+# toggle window float / tiled
+cmd + lalt - f : yabai -m window --toggle float
+
 # move window to mouse direction
 # cmd + lalt - 0x7B : yabai -m window --warp mouse
 
