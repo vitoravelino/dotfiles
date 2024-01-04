@@ -1,11 +1,11 @@
 # exports
 source ~/.exports
 
-# custom aliases
-source ~/.aliases
-
 # antigen
 source ~/.antigen/config
+
+# custom aliases
+source ~/.aliases
 
 # load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
