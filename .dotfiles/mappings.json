@@ -2,6 +2,7 @@
   "alacritty": "~/.config/alacritty",
   "borders": "~/.config/borders",
   "gnupg": "~/.gnupg",
+  "sketchybar": "~/.config/sketchybar",
 
   "aliases": "~/.aliases",
   "antigen": "~/.antigen/config",
