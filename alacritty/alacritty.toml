@@ -1,0 +1,99 @@
+[colors.bright]
+black = "0x686868"
+blue = "0x8BCBD6"
+cyan = "0x95E6CB"
+green = "0xBAE67D"
+magenta = "0xD3BFFF"
+red = "0xF28779"
+white = "0xF9F8F5"
+yellow = "0xFFD580"
+
+[colors.normal]
+black = "0x191D2A"
+blue = "0x8BCBD6"
+cyan = "0x95E6CB"
+green = "0xA6CC70"
+magenta = "0xCEBAFA"
+red = "0xED8274"
+white = "0xF8F8F2"
+yellow = "0xFAD07A"
+
+[colors.primary]
+background = "0x1f2430"
+foreground = "0xDADBC0"
+
+[colors.selection]
+background = "0xDADBC0"
+text = "0x1f2430"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "Iosevka Fixed Extended"
+style = "Bold Extended"
+
+[font.bold_italic]
+family = "Iosevka Fixed Extended"
+style = "Bold Extended Italic"
+
+[font.italic]
+family = "Iosevka Fixed Extended"
+style = "Extended Italic"
+
+[font.normal]
+family = "Iosevka Fixed Extended"
+style = "Extended"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BOH"
+key = "Left"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0015"
+key = "Back"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001B\u007F"
+key = "Back"
+mods = "Alt"
+
+[scrolling]
+history = 5000
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "none"
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 4
