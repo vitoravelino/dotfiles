@@ -6,7 +6,6 @@
 if [ "$SENDER" = "volume_change" ]; then
   VOLUME=$INFO
 
-echo $VOLUME
   case $VOLUME in
     [6-9][0-9]|100) ICON=""
     ;;
