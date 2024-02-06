@@ -3,6 +3,8 @@
 # For a more advanced configuration example see my dotfiles:
 # https://github.com/FelixKratz/dotfiles
 
+source $CONFIG_DIR/colors.sh
+
 ITEMS_DIR=$CONFIG_DIR/items
 
 HELPER=git.felix.helper
@@ -25,7 +27,7 @@ BAR=(
   padding_left=10
   padding_right=10
   notch_width=220
-  color=0xff1f2430
+  color=$BAR_COLOR
 )
 sketchybar --bar "${BAR[@]}"
 
@@ -39,7 +41,7 @@ DEFAULT=(
   icon.padding_left=4
   icon.padding_right=4
   label.font="Iosevka Fixed:Medium Extended:13.0"
-  label.color=0xffDADBC0
+  label.color=$LABEL_COLOR
   label.padding_left=4
   label.padding_right=4
   padding_left=4
