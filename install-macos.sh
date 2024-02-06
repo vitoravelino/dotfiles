@@ -17,9 +17,11 @@ brew install coreutils curl git
 # gnupg
 # https://gist.github.com/phortuin/cf24b1cca3258720c71ad42977e1ba57
 
-brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep
+brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep cloudflared
 
-brew install dropbox firefox keepassxc visual-studio-code discord slack steam alacritty vlc spotify borders flameshot telegram font-iosevka sf-symbols android-studio
+brew install dropbox firefox keepassxc visual-studio-code discord slack steam alacritty vlc spotify borders flameshot telegram font-iosevka sf-symbols android-studio imageoptim latest orbstack arc zed
+
+pip install -U yt-dlp
 
 chmod +x /Applications/flameshot.app/Contents/MacOS/flameshot
 
