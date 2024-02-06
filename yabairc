@@ -52,9 +52,13 @@ yabai -m rule --add app="^iTerm2$" space=^3
 yabai -m rule --add app="^Code$" space=^4
 yabai -m rule --add app="^Slack$" space=^5
 yabai -m rule --add app="^Discord$" space=^5
+yabai -m rule --add app="^Telegram$" space=^5
 yabai -m rule --add app="^Spotify$" space=^6
 yabai -m rule --add app="^VLC$" space=^7
 yabai -m rule --add app="^Finder$" space=^8
+yabai -m rule --add app="^ImageOptim$" space=^8 manage=off
 yabai -m rule --add app="^KeePassXC$" space=^9
+yabai -m rule --add app="^League of Legends$" space=^9 manage=off
+yabai -m rule --add app="^Riot Client$" space=^9 manage=off
 
 echo "yabai configuration loaded.."
