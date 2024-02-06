@@ -1,3 +1,7 @@
+#!/bin/sh
+
+source $CONFIG_DIR/colors.sh
+
 SPACE_ICONS=("" "" "" "" "" "" "" "" "")
 SPACE_LABELS=("home" "web" "terminal" "code" "chat" "music" "video" "files" "misc")
 
@@ -8,7 +12,7 @@ do
   space=(
     space=$sid
     icon=${SPACE_ICONS[i]}
-    icon.color=0xff3d4150
+    icon.color=$EMPTY_SPACE_ICON_COLOR
     label=${SPACE_LABELS[i]}
     label.drawing=off
     script="$CONFIG_DIR/items/spaces/script.sh"              \

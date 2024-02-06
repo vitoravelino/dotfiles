@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source $CONFIG_DIR/colors.sh
+
 PERCENTAGE=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
@@ -10,31 +12,31 @@ fi
 case ${PERCENTAGE} in
   100)
     ICON=""
-    COLOR=0xff40916c
+    COLOR=$CHARGED_BATTERY_COLOR
   ;;
   9[0-9])
     ICON=""
-    COLOR=0xff1f2430
+    COLOR=$WIDGET_ICON_COLOR
   ;;
   [6-8][0-9])
     ICON=""
-    COLOR=0xff1f2430
+    COLOR=$WIDGET_ICON_COLOR
   ;;
   [3-5][0-9])
     ICON=""
-    COLOR=0xff1f2430
+    COLOR=$WIDGET_ICON_COLOR
   ;;
   2[1-9])
     ICON=""
-    COLOR=0xff1f2430
+    COLOR=$WIDGET_ICON_COLOR
   ;;
   [1-2][0-9])
     ICON=""
-    COLOR=0xffd23c3d
+    COLOR=$LOW_BATTERY_COLOR
   ;;
   *)
     ICON=""
-    COLOR=0xffd23c3d
+    COLOR=$LOW_BATTERY_COLOR
 esac
 
 if [[ $CHARGING != "" ]]; then
