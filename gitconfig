@@ -41,3 +41,5 @@
     signoff = true
 [init]
     defaultbranch = main
+[merge]
+	conflictStyle = zdiff3
