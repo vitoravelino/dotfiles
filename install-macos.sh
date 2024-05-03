@@ -8,20 +8,26 @@ brew install coreutils curl git
 
 # copy tool-versions
 
-# asdf install
-
-# asdf reshim
-
-# go install github.com/rhysd/dotfiles@latest
+# lan
+asdf install
+asdf reshim
+rustup default stable
 
 # gnupg
 # https://gist.github.com/phortuin/cf24b1cca3258720c71ad42977e1ba57
 
-brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep cloudflared
+# cli
+brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep cloudflared watch btop neovim fd lazygit wget gnu-sed
 
-brew install dropbox firefox keepassxc visual-studio-code discord slack steam alacritty vlc spotify borders flameshot telegram font-iosevka sf-symbols android-studio imageoptim latest orbstack arc zed
+# language-based cli tools
+go install github.com/rhysd/dotfiles@latest
+npm install -g pnpm yarn neovim diff-so-fancy eslint
+yarn create expo@next
+gem install neovim
+pip install -U yt-dlp httpie
 
-pip install -U yt-dlp
+# casks
+brew install dropbox firefox keepassxc visual-studio-code discord slack steam alacritty vlc spotify borders flameshot telegram font-iosevka sf-symbols android-studio imageoptim latest orbstack arc zed obs
 
 chmod +x /Applications/flameshot.app/Contents/MacOS/flameshot
 
