@@ -28,6 +28,7 @@ yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
+yabai -m config external_bar                 all:38:0
 
 yabai -m space 1 --label home
 yabai -m space 2 --label web
@@ -47,11 +48,17 @@ yabai -m rule --add app="^qemu-system-aarch64$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
 
 yabai -m rule --add app="^Firefox$" space=^2
+yabai -m rule --add app="^Zen$" space=^2
+yabai -m rule --add app="^Arc$" space=^2
+yabai -m rule --add app="^Safari$" space=^2
 yabai -m rule --add app="^Alacritty$" space=^3
 yabai -m rule --add app="^iTerm2$" space=^3
 yabai -m rule --add app="^Code$" space=^4
+yabai -m rule --add app="^Cursor$" space=^4
+yabai -m rule --add app="^Windsurf$" space=^4
+yabai -m rule --add app="^Zed$" space=^4
 yabai -m rule --add app="^Slack$" space=^5
-yabai -m rule --add app="^Discord$" space=^5
+yabai -m rule --add app="^Legcord$" space=^5
 yabai -m rule --add app="^Telegram$" space=^5
 yabai -m rule --add app="^Spotify$" space=^6
 yabai -m rule --add app="^VLC$" space=^7
