@@ -1,7 +1,7 @@
 [user]
     name = Vítor Avelino
-    email = contact@vitoravelino.me
-    signingkey = 21C1F76290FCD261
+    email = vitor@camarada.dev
+    signingkey = DE5009F51A944713
 
 # [includeIf "gitdir:~/Workspace/folder/"]
 #         path = ~/Workspace/folder/.gitconfig
@@ -39,7 +39,9 @@
 
 [format]
     signoff = true
+
 [init]
     defaultbranch = main
+
 [merge]
-	conflictStyle = zdiff3
+  	conflictStyle = zdiff3
