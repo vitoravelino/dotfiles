@@ -13,8 +13,17 @@ source ~/.aliases
 # load asdf
 source ~/.asdf/asdf.sh
 
-# rust
-source ~/.asdf/installs/rust/1.74.1/env
+# completions
+fpath=($HOME/.asdf/completions $fpath)
+fpath+=$HOME/.rustup/zfunc
+
+autoload -Uz compinit
+
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit;
+else
+  compinit -C;
+fi;
 
 # gpg
 gpgconf --launch gpg-agent
