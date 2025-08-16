@@ -45,7 +45,7 @@ family = "Iosevka Fixed Extended"
 style = "Extended Italic"
 
 [font.normal]
-family = "Iosevka Fixed Extended"
+family = "Iosevka Fixed"
 style = "Extended"
 
 [[keyboard.bindings]]
@@ -83,12 +83,12 @@ mods = "Alt"
 [scrolling]
 history = 5000
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
 [window]
-decorations = "none"
+decorations = "Buttonless"
 title = "Alacritty"
 
 [window.class]
@@ -96,4 +96,5 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 4
+x = 5
+y = 5
