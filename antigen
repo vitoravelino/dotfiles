@@ -7,6 +7,10 @@ antigen bundle docker-compose
 antigen bundle git
 antigen bundle gitfast
 antigen bundle git-extras
+antigen bundle kamal
+antigen bundle brew
+antigen bundle tldr
+antigen bundle httpie
 
 antigen bundle MichaelAquilina/zsh-you-should-use
 antigen bundle zsh-users/zsh-syntax-highlighting
