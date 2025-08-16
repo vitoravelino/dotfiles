@@ -10,11 +10,10 @@ source ~/.aliases
 # load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# load asdf
-source ~/.asdf/asdf.sh
+# mise
+eval "$(mise activate zsh)"
 
 # completions
-fpath=($HOME/.asdf/completions $fpath)
 fpath+=$HOME/.rustup/zfunc
 
 autoload -Uz compinit
