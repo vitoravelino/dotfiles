@@ -1,8 +1,5 @@
 {
-  "alacritty": "~/.config/alacritty",
-  "borders": "~/.config/borders",
   "gnupg": "~/.gnupg",
-  "sketchybar": "~/.config/sketchybar",
 
   "aliases": "~/.aliases",
   "antigen": "~/.antigen/config",
@@ -14,9 +11,7 @@
   "gitignore": "~/.gitignore",
   "hushlogin": "~/.hushlogin",
   "irbrc": "~/.irbrc",
-  "skhdrc": "~/.skhdrc",
   "ssh_config": "~/.ssh/config",
   "vimrc": "~/.vimrc",
-  "yabairc": "~/.yabairc",
   "zshrc": "~/.zshrc"
 }
