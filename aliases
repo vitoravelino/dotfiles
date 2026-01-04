@@ -2,4 +2,4 @@
 
 alias ls='eza -F --color=auto'
 alias work='cd ~/Projects'
-alias cat=bat
+alias icog='unset HISTFILE'
