@@ -24,5 +24,8 @@ else
   compinit -C;
 fi;
 
+# zoxide
+eval "$(zoxide init zsh)" 
+
 # gpg
 gpgconf --launch gpg-agent

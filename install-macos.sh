@@ -3,7 +3,7 @@ brew tap koekeishiya/formulae
 
 # cli
 brew install coreutils curl git mise
-brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep watch btop neovim fd lazygit wget gnu-sed watchman tldr dust
+brew install fzf gnupg pinentry-mac htop bat wget ripgrep jq eza btop neofetch grep watch btop neovim fd lazygit wget gnu-sed watchman tldr dust duf zoxide
 
 # langs
 cp mise.toml ~/.config/mise/config.toml
