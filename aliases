@@ -1,5 +1,4 @@
 #!/bin/bash
 
 alias ls='eza -F --color=auto'
-alias work='cd ~/Projects'
-alias cat=bat
+alias work='cd ~/projects'

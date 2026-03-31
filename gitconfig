@@ -32,13 +32,39 @@
     smudge = git-media-smudge %f
 
 [commit]
-    gpgsign = true
+  gpgsign = true
 
 [format]
-    signoff = true
+  signoff = true
 
 [init]
-    defaultbranch = main
+  defaultbranch = main
 
 [merge]
-  	conflictStyle = zdiff3
+  conflictStyle = zdiff3
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  pruneTags = true
+  all = true
+
+[help]
+  autocorrect = prompt
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
