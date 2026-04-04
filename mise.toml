@@ -1,9 +1,15 @@
 [tools]
-bun = "1.2"
-crystal = "1.17"
-elixir = "1.18"
+bun = "1.3"
+crystal = "1.19"
+elixir = "1.19"
 erlang = "28"
-go = "1.25"
+go = "1.26"
 node = "24"
-python = "3.13"
-ruby = "3.4"
+python = "3.14"
+ruby = "4.0"
+php = "8.5"
+
+[settings]
+
+[settings.ruby]
+compile = false

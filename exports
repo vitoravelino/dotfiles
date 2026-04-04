@@ -7,9 +7,13 @@ export LANG="en_US.UTF-8"
 # Editor
 export EDITOR=vim
 export BUNDLE_EDITOR=code
+export RAILS_EDITOR=code
 
 # rails spring
 export DISABLE_SPRING=true
+
+# claude
+export PATH="$HOME/.local/bin:$PATH"
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -19,3 +23,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+if [ -f "$HOME/.exports.local" ]; then
+  source "$HOME/.exports.local"
+fi
