@@ -22,7 +22,7 @@ get_icon() {
 }
 
 KEY=`cat ~/.config/.openweathermap_key`
-CITY="João%20Pessoa,%20BR"
+CITY=`CoreLocationCLI -f "%locality, %isoCountryCode" | sed 's/ /%20/g'`
 UNITS="metric"
 SYMBOL="°C"
 
